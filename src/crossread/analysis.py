@@ -19,6 +19,11 @@ BASE = ["length", "zipf", "length:zipf", "prev_length", "prev_zipf", "prev_lengt
 SURP = ["surprisal", "prev_surprisal"]
 
 
+def cluster_ids(d: pd.DataFrame) -> np.ndarray:
+    """Resampling / CV unit: the item (EMTeC prompt across its 15 versions), else the text."""
+    return (d["item_id"] if "item_id" in d.columns else d["text_id"]).to_numpy()
+
+
 def design(d: pd.DataFrame, terms: list[str]) -> np.ndarray:
     cols = [np.ones(len(d))]
     for t in terms:
@@ -55,18 +60,20 @@ def delta_ll(d: pd.DataFrame, measure: str, by: list[str], base=BASE, target=SUR
     for key, g in d.groupby(by):
         g = g.dropna(subset=[measure] + [t for t in base + target if ":" not in t])
         n_txt = g["text_id"].nunique()
-        if n_txt < k or len(g) < 50:
+        cl = cluster_ids(g)
+        kk = min(k, len(np.unique(cl)))
+        if kk < 3 or len(g) < 50:
             continue
         y = g[measure].to_numpy(float)
-        folds = _fold_ids(g["text_id"].to_numpy(), k, rng)
-        dll = _cv_loglik(g, y, base + target, folds, k) - _cv_loglik(g, y, base, folds, k)
+        folds = _fold_ids(cl, kk, rng)
+        dll = _cv_loglik(g, y, base + target, folds, kk) - _cv_loglik(g, y, base, folds, kk)
         # cluster (text-level) sign-flip permutation test of mean dLL > 0
-        per_text = pd.Series(dll).groupby(g["text_id"].to_numpy()).sum().to_numpy()
+        per_text = pd.Series(dll).groupby(cl).sum().to_numpy()
         obs = per_text.sum() / len(dll)
         flips = rng.choice([-1, 1], size=(n_perm, len(per_text)))
         null = (flips * per_text).sum(1) / len(dll)
         rows.append(dict(zip(by, key if isinstance(key, tuple) else (key,)),
-                         measure=measure, n_words=len(g), n_texts=n_txt,
+                         measure=measure, n_words=len(g), n_texts=n_txt, n_clusters=len(per_text),
                          dLL=obs, dLL_se=dll.std(ddof=1) / np.sqrt(len(dll)),
                          p_perm=(np.sum(null >= obs) + 1) / (n_perm + 1)))
     return pd.DataFrame(rows)
@@ -83,7 +90,7 @@ def slopes(d: pd.DataFrame, measure: str, by: list[str], base=BASE, n_boot: int 
             continue
         X, y = design(g, terms), g[measure].to_numpy(float)
         b = np.linalg.lstsq(X, y, rcond=None)[0][1 + terms.index("surprisal")]
-        idx_by_text = [ix for ix in g.groupby("text_id").indices.values()]
+        idx_by_text = list(pd.Series(np.arange(len(g))).groupby(cluster_ids(g)).indices.values())
         boots = []
         for _ in range(n_boot):
             pick = rng.integers(0, len(idx_by_text), len(idx_by_text))

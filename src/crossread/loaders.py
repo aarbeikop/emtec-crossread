@@ -14,7 +14,8 @@ import pandas as pd
 from . import schema
 
 
-def read_table(path: str | Path, obj: str | None = None, sep: str | None = None) -> pd.DataFrame:
+def read_table(path: str | Path, obj: str | None = None, sep: str | None = None,
+               usecols=None) -> pd.DataFrame:
     path = Path(path)
     suf = path.suffix.lower()
     if suf in {".rda", ".rdata", ".rds"}:
@@ -26,9 +27,14 @@ def read_table(path: str | Path, obj: str | None = None, sep: str | None = None)
         return pd.DataFrame(res)
     if suf == ".parquet":
         return pd.read_parquet(path)
-    if suf in {".tsv", ".txt"} and sep is None:
-        sep = "\t"
-    return pd.read_csv(path, sep=sep or ",", low_memory=False)
+    if sep is None:  # sniff tab vs comma from the header line
+        with open(path, encoding="utf-8", errors="replace") as f:
+            head = f.readline()
+        sep = "\t" if head.count("\t") > head.count(",") else ","
+    if usecols is not None:  # only read what we need (OneStop's IA report has 157 columns)
+        head_cols = pd.read_csv(path, sep=sep, nrows=0).columns
+        usecols = [c for c in usecols if c in head_cols]
+    return pd.read_csv(path, sep=sep, low_memory=False, usecols=usecols)
 
 
 def _map(raw: pd.DataFrame, cols: dict, name: str) -> pd.DataFrame:
@@ -43,7 +49,10 @@ def _map(raw: pd.DataFrame, cols: dict, name: str) -> pd.DataFrame:
 
 
 def load_corpus(name: str, cfg: dict, root: Path = Path(".")) -> pd.DataFrame:
-    raw = read_table(root / cfg["path"], cfg.get("r_object"), cfg.get("sep"))
+    need = None
+    if Path(cfg["path"]).suffix.lower() in {".csv", ".tsv", ".txt"} and not cfg.get("join"):
+        need = list(cfg["columns"].values()) + list((cfg.get("filter") or {}).keys())
+    raw = read_table(root / cfg["path"], cfg.get("r_object"), cfg.get("sep"), usecols=need)
 
     for col, val in (cfg.get("filter") or {}).items():
         raw = raw[raw[col].isin(val if isinstance(val, list) else [val])]
@@ -67,6 +76,10 @@ def load_corpus(name: str, cfg: dict, root: Path = Path(".")) -> pd.DataFrame:
     # text id = concatenation of the configured key columns (EMTeC: item x model x decoding)
     keys = cfg.get("text_keys", ["text"])
     df["text_id"] = name + ":" + df[keys].astype(str).agg("|".join, axis=1)
+    # item = the underlying prompt/passage. EMTeC shows each item in 15 model x decoding
+    # versions with overlapping content, so resampling / clustering must happen at this level.
+    item_keys = cfg.get("item_keys", keys[:1])
+    df["item_id"] = name + ":" + df[item_keys].astype(str).agg("|".join, axis=1)
     df = df.drop(columns=[k for k in keys if k not in ("model", "decoding")])
 
     df["corpus"] = name
@@ -92,18 +105,42 @@ def load_corpus(name: str, cfg: dict, root: Path = Path(".")) -> pd.DataFrame:
         df["skip"] = df["GD"].isna().astype(float)
     # a word with GD defined was not skipped; make the two consistent
     df.loc[df["skip"] == 1, ["FFD", "GD"]] = np.nan
+    # optional: first-pass regression out of the word (0/1); undefined if skipped in first pass
+    if "reg_out" in df.columns:
+        df["reg_out"] = pd.to_numeric(df["reg_out"], errors="coerce")
+        df.loc[(df["skip"] == 1) | df["GD"].isna(), "reg_out"] = np.nan
+    else:
+        df["reg_out"] = np.nan
 
     df["word_idx"] = pd.to_numeric(df["word_idx"], errors="coerce")
-    df["word_idx"] = df["word_idx"] - df.groupby("text_id")["word_idx"].transform("min")  # 0-based
+    n_nan = int(df["word_idx"].isna().sum())
+    df = df.dropna(subset=["word_idx"])
+    df["word_idx"] = (df["word_idx"] - df.groupby("text_id")["word_idx"].transform("min")).astype(int)
     df["word"] = df["word"].astype(str)
+    if cfg.get("fix_excel_booleans", True):  # Excel turned "true"/"false" into TRUE/FALSE (Provo)
+        df.loc[df["word"].isin(["TRUE", "FALSE"]), "word"] = df["word"].str.lower()
+    _report_gaps(df, name, n_nan)
     df["subject_id"] = name + ":" + df["subject_id"].astype(str)
 
     df = df.drop_duplicates(["text_id", "subject_id", "word_idx"])
     return schema.check(df, name)
 
 
+def _report_gaps(df, name, n_nan):
+    """Words missing from the eye-tracking table are missing from the text the LM sees."""
+    pos = df.groupby("text_id")["word_idx"].agg(["max", "nunique"])
+    pos["missing"] = pos["max"] + 1 - pos["nunique"]
+    bad = pos[pos["missing"] > 0]
+    if n_nan or len(bad):
+        print(f"  [{name}] WARNING: {n_nan} rows without word index dropped; "
+              f"{len(bad)}/{len(pos)} texts have gaps ({int(bad['missing'].sum())} word positions "
+              f"missing, e.g. {list(bad.index[:3])}). Surprisal near gaps is computed on an "
+              f"incomplete text: see README 'Provo gaps'.")
+
+
 def texts_from_words(df: pd.DataFrame) -> pd.DataFrame:
     """Rebuild each text as its ordered word list (modal word string per position)."""
-    w = (df.groupby(["corpus", "language", "text_id", "word_idx"])["word"]
+    w = (df.assign(word=df["word"].fillna("").astype(str))
+           .groupby(["corpus", "language", "text_id", "word_idx"])["word"]
            .agg(lambda s: s.mode().iat[0]).reset_index())
     return w.sort_values(["corpus", "text_id", "word_idx"])

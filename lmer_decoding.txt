@@ -1,0 +1,171 @@
+  emtec/beam_search      FFD     25880 obs    42 items  0.0 min
+  emtec/beam_search      GD      25880 obs    42 items  0.0 min
+  emtec/beam_search      TFT     30397 obs    42 items  0.0 min
+  emtec/greedy_search    FFD     39030 obs    42 items  0.0 min
+  emtec/greedy_search    GD      39030 obs    42 items  0.0 min
+  emtec/greedy_search    TFT     45954 obs    42 items  0.0 min
+  emtec/sampling         FFD     39108 obs    42 items  0.0 min
+  emtec/sampling         GD      39108 obs    42 items  0.0 min
+  emtec/sampling         TFT     45835 obs    42 items  0.0 min
+  emtec/topk             FFD     40000 obs    42 items  0.0 min
+  emtec/topk             GD      40000 obs    42 items  0.0 min
+  emtec/topk             TFT     47047 obs    42 items  0.0 min
+  emtec/topp             FFD     39947 obs    42 items  0.0 min
+  emtec/topp             GD      39947 obs    42 items  0.0 min
+  emtec/topp             TFT     46729 obs    42 items  0.0 min
+  meco_en                FFD     29794 obs    12 items  0.0 min
+  meco_en                GD      29794 obs    12 items  0.0 min
+  meco_en                TFT     49814 obs    12 items  0.0 min
+  onestop                FFD    377345 obs   162 items  0.6 min
+  onestop                GD     377345 obs   162 items  0.4 min
+  onestop                TFT    548445 obs   162 items  0.6 min
+  provo                  FFD    101908 obs    55 items  0.1 min
+  provo                  GD     101908 obs    55 items  0.1 min
+  provo                  TFT    123147 obs    55 items  0.1 min
+
+== relative scaling slope per group (< 0 = bigger LMs fit worse; trial-level LMMs) ==
+               group measure variant  n_obs n_items rel_slope      lo       hi p_boot
+              <char>  <char>  <char>  <int>   <int>     <num>   <num>    <num>  <num>
+   emtec/beam_search     FFD      T1  25880      42   -0.6254 -2.4679 -0.03899  0.040
+ emtec/greedy_search     FFD      T1  39030      42   -0.5251 -1.9857 -0.07810  0.048
+      emtec/sampling     FFD      T1  39108      42   -0.4231 -1.1207 -0.13207  0.008
+          emtec/topk     FFD      T1  40000      42   -0.7929 -3.2826 -0.21909  0.028
+          emtec/topp     FFD      T1  39947      42   -0.4177 -0.9687 -0.14999  0.004
+             meco_en     FFD      T1  29794      12   -0.3413 -1.1037  0.15667  0.116
+             onestop     FFD      T1 377345     162   -0.1194 -0.2268 -0.03114  0.010
+               provo     FFD      T1 101908      55   -0.4032 -0.7558 -0.17010  0.002
+   emtec/beam_search     FFD   Tstar  25880      42   -0.6581 -2.4798 -0.00989  0.050
+ emtec/greedy_search     FFD   Tstar  39030      42   -0.5821 -2.3300  0.15241  0.056
+      emtec/sampling     FFD   Tstar  39108      42   -0.3994 -1.0249 -0.12487  0.008
+          emtec/topk     FFD   Tstar  40000      42   -0.8127 -3.5597 -0.18408  0.044
+          emtec/topp     FFD   Tstar  39947      42   -0.3908 -0.8775 -0.15111  0.000
+             meco_en     FFD   Tstar  29794      12   -0.1001 -0.4174  0.13359  0.454
+             onestop     FFD   Tstar 377345     162   -0.1221 -0.2223 -0.03777  0.002
+               provo     FFD   Tstar 101908      55   -0.2955 -0.5993 -0.07885  0.014
+   emtec/beam_search      GD      T1  25880      42   -0.4170 -0.9294 -0.04314  0.034
+ emtec/greedy_search      GD      T1  39030      42   -0.5340 -1.1731 -0.23465  0.000
+      emtec/sampling      GD      T1  39108      42   -0.3089 -0.6215 -0.07730  0.018
+          emtec/topk      GD      T1  40000      42   -0.5799 -1.2048 -0.29454  0.000
+          emtec/topp      GD      T1  39947      42   -0.4566 -1.0385 -0.17355  0.002
+             meco_en      GD      T1  29794      12   -0.1851 -0.9709  0.08440  0.184
+             onestop      GD      T1 377345     162   -0.0578 -0.1417  0.02642  0.192
+               provo      GD      T1 101908      55   -0.2158 -0.4338  0.00788  0.064
+   emtec/beam_search      GD   Tstar  25880      42   -0.4312 -0.9047 -0.07199  0.016
+ emtec/greedy_search      GD   Tstar  39030      42   -0.4681 -1.0326 -0.20968  0.000
+      emtec/sampling      GD   Tstar  39108      42   -0.1678 -0.4368  0.03128  0.114
+          emtec/topk      GD   Tstar  40000      42   -0.4599 -0.9344 -0.21240  0.004
+          emtec/topp      GD   Tstar  39947      42   -0.2889 -0.6931 -0.06866  0.010
+             meco_en      GD   Tstar  29794      12   -0.0123 -0.2215  0.16449  0.958
+             onestop      GD   Tstar 377345     162   -0.0630 -0.1495  0.01648  0.136
+               provo      GD   Tstar 101908      55   -0.1274 -0.3196  0.08358  0.166
+   emtec/beam_search     TFT      T1  30397      42   -0.0727 -0.2725  0.06890  0.328
+ emtec/greedy_search     TFT      T1  45954      42   -0.3033 -0.5588 -0.11469  0.000
+      emtec/sampling     TFT      T1  45835      42   -0.1007 -0.2675  0.04327  0.150
+          emtec/topk     TFT      T1  47047      42   -0.1894 -0.4282  0.01791  0.078
+          emtec/topp     TFT      T1  46729      42   -0.2090 -0.4984 -0.02176  0.028
+             meco_en     TFT      T1  49814      12   -0.0613 -0.5248  0.13419  0.630
+             onestop     TFT      T1 548445     162    0.0977  0.0136  0.16110  0.024
+               provo     TFT      T1 123147      55   -0.0581 -0.2389  0.08009  0.436
+   emtec/beam_search     TFT   Tstar  30397      42   -0.0764 -0.2599  0.06071  0.274
+ emtec/greedy_search     TFT   Tstar  45954      42   -0.3070 -0.5563 -0.11972  0.000
+      emtec/sampling     TFT   Tstar  45835      42   -0.1213 -0.2824  0.00733  0.068
+          emtec/topk     TFT   Tstar  47047      42   -0.2222 -0.4538 -0.02198  0.022
+          emtec/topp     TFT   Tstar  46729      42   -0.1971 -0.4834 -0.01989  0.022
+             meco_en     TFT   Tstar  49814      12   -0.0376 -0.4066  0.18358  0.848
+             onestop     TFT   Tstar 548445     162    0.0986  0.0159  0.16133  0.026
+               provo     TFT   Tstar 123147      55   -0.0603 -0.2277  0.06800  0.384
+               group measure variant  n_obs n_items rel_slope      lo       hi p_boot
+              <char>  <char>  <char>  <int>   <int>     <num>   <num>    <num>  <num>
+
+== contrasts (< 0 = more inverse scaling in the first group) ==
+ measure variant                                 contrast paired    diff      lo       hi p_boot
+  <char>  <char>                                   <char> <lgcl>   <num>   <num>    <num>  <num>
+     FFD      T1        emtec: deterministic - stochastic   TRUE -0.0307 -1.5795  1.66922  0.886
+     FFD      T1 emtec: sampling - truncated (topk, topp)   TRUE  0.1822 -0.6358  1.54749  0.500
+     FFD      T1             emtec: sampling - all others   TRUE  0.1672 -0.7380  1.73996  0.412
+     FFD      T1    emtec truncated+greedy+beam - meco_en  FALSE -0.2490 -2.1980  0.90962  0.392
+     FFD      T1                 emtec sampling - meco_en  FALSE -0.0818 -1.0986  0.70473  0.718
+     FFD      T1    emtec truncated+greedy+beam - onestop  FALSE -0.4709 -2.1672 -0.01524  0.048
+     FFD      T1                 emtec sampling - onestop  FALSE -0.3037 -1.0419  0.00862  0.054
+     FFD      T1      emtec truncated+greedy+beam - provo  FALSE -0.1870 -1.6155  0.42729  0.380
+     FFD      T1                   emtec sampling - provo  FALSE -0.0198 -0.7172  0.40585  0.936
+     FFD   Tstar        emtec: deterministic - stochastic   TRUE -0.0858 -1.9756  2.39228  0.720
+     FFD   Tstar emtec: sampling - truncated (topk, topp)   TRUE  0.2024 -0.7129  1.69368  0.456
+     FFD   Tstar             emtec: sampling - all others   TRUE  0.2116 -1.1599  1.61883  0.356
+     FFD   Tstar    emtec truncated+greedy+beam - meco_en  FALSE -0.5109 -1.9577  0.63556  0.096
+     FFD   Tstar                 emtec sampling - meco_en  FALSE -0.2993 -0.9452  0.13121  0.144
+     FFD   Tstar    emtec truncated+greedy+beam - onestop  FALSE -0.4889 -2.0429  0.48293  0.076
+     FFD   Tstar                 emtec sampling - onestop  FALSE -0.2773 -0.8853  0.00795  0.066
+     FFD   Tstar      emtec truncated+greedy+beam - provo  FALSE -0.3155 -1.8075  0.75582  0.190
+     FFD   Tstar                   emtec sampling - provo  FALSE -0.1039 -0.7360  0.30539  0.600
+      GD      T1        emtec: deterministic - stochastic   TRUE -0.0270 -0.3767  0.30811  0.934
+      GD      T1 emtec: sampling - truncated (topk, topp)   TRUE  0.2093 -0.0719  0.73698  0.148
+      GD      T1             emtec: sampling - all others   TRUE  0.1879 -0.1018  0.70362  0.214
+      GD      T1    emtec truncated+greedy+beam - meco_en  FALSE -0.3118 -0.9080  0.47363  0.224
+      GD      T1                 emtec sampling - meco_en  FALSE -0.1239 -0.5599  0.65369  0.610
+      GD      T1    emtec truncated+greedy+beam - onestop  FALSE -0.4391 -0.9230 -0.18419  0.002
+      GD      T1                 emtec sampling - onestop  FALSE -0.2512 -0.5874  0.00291  0.054
+      GD      T1      emtec truncated+greedy+beam - provo  FALSE -0.2811 -0.8214  0.02653  0.080
+      GD      T1                   emtec sampling - provo  FALSE -0.0931 -0.4757  0.20495  0.608
+      GD   Tstar        emtec: deterministic - stochastic   TRUE -0.1441 -0.4905  0.10333  0.250
+      GD   Tstar emtec: sampling - truncated (topk, topp)   TRUE  0.2066 -0.0354  0.55139  0.098
+      GD   Tstar             emtec: sampling - all others   TRUE  0.2442 -0.0287  0.62753  0.076
+      GD   Tstar    emtec truncated+greedy+beam - meco_en  FALSE -0.3998 -0.8024 -0.14043  0.004
+      GD   Tstar                 emtec sampling - meco_en  FALSE -0.1556 -0.4709  0.12457  0.256
+      GD   Tstar    emtec truncated+greedy+beam - onestop  FALSE -0.3490 -0.7395 -0.14170  0.000
+      GD   Tstar                 emtec sampling - onestop  FALSE -0.1049 -0.4078  0.12033  0.364
+      GD   Tstar      emtec truncated+greedy+beam - provo  FALSE -0.2846 -0.7175 -0.02894  0.028
+      GD   Tstar                   emtec sampling - provo  FALSE -0.0405 -0.3651  0.24482  0.804
+     TFT      T1        emtec: deterministic - stochastic   TRUE -0.0216 -0.1690  0.10682  0.744
+     TFT      T1 emtec: sampling - truncated (topk, topp)   TRUE  0.0985 -0.0963  0.31000  0.302
+     TFT      T1             emtec: sampling - all others   TRUE  0.0929 -0.0607  0.27771  0.228
+     TFT      T1    emtec truncated+greedy+beam - meco_en  FALSE -0.1323 -0.3986  0.31352  0.422
+     TFT      T1                 emtec sampling - meco_en  FALSE -0.0394 -0.2863  0.48197  0.814
+     TFT      T1    emtec truncated+greedy+beam - onestop  FALSE -0.2913 -0.4808 -0.14101  0.000
+     TFT      T1                 emtec sampling - onestop  FALSE -0.1984 -0.3802 -0.03572  0.012
+     TFT      T1      emtec truncated+greedy+beam - provo  FALSE -0.1355 -0.3626  0.07874  0.198
+     TFT      T1                   emtec sampling - provo  FALSE -0.0426 -0.2515  0.17836  0.698
+     TFT   Tstar        emtec: deterministic - stochastic   TRUE -0.0115 -0.1420  0.10702  0.852
+     TFT   Tstar emtec: sampling - truncated (topk, topp)   TRUE  0.0883 -0.0924  0.29077  0.362
+     TFT   Tstar             emtec: sampling - all others   TRUE  0.0793 -0.0717  0.26713  0.278
+     TFT   Tstar    emtec truncated+greedy+beam - meco_en  FALSE -0.1631 -0.4542  0.21148  0.322
+     TFT   Tstar                 emtec sampling - meco_en  FALSE -0.0838 -0.3677  0.29868  0.584
+     TFT   Tstar    emtec truncated+greedy+beam - onestop  FALSE -0.2992 -0.4897 -0.15300  0.000
+     TFT   Tstar                 emtec sampling - onestop  FALSE -0.2199 -0.3997 -0.06622  0.004
+     TFT   Tstar      emtec truncated+greedy+beam - provo  FALSE -0.1404 -0.3619  0.05754  0.158
+     TFT   Tstar                   emtec sampling - provo  FALSE -0.0610 -0.2720  0.15013  0.556
+ measure variant                                 contrast paired    diff      lo       hi p_boot
+  <char>  <char>                                   <char> <lgcl>   <num>   <num>    <num>  <num>
+
+== surprisal coefficient (ms per bit) at T=1 ==
+Key: <measure, group>
+ measure               group  gpt2 gpt2-large gpt2-medium pythia-1.4b pythia-160m pythia-1b pythia-2.8b pythia-410m pythia-70m
+  <char>              <char> <num>      <num>       <num>       <num>       <num>     <num>       <num>       <num>      <num>
+     FFD   emtec/beam_search 1.123      0.939       0.898       0.880        1.04     0.978       0.876       0.935      1.015
+     FFD emtec/greedy_search 1.095      0.998       1.076       0.946        1.03     0.950       0.847       0.979      1.109
+     FFD      emtec/sampling 0.845      0.871       0.829       0.827        1.00     0.893       0.756       0.854      0.998
+     FFD          emtec/topk 1.042      0.854       0.891       0.845        1.04     0.765       0.751       0.819      1.120
+     FFD          emtec/topp 1.411      1.336       1.415       1.291        1.46     1.261       1.270       1.375      1.477
+     FFD             meco_en 0.981      0.860       0.934       0.972        1.05     0.851       0.909       0.982      1.087
+     FFD             onestop 0.871      0.806       0.848       0.772        0.90     0.802       0.793       0.837      0.957
+     FFD               provo 0.826      0.715       0.841       0.560        0.76     0.659       0.493       0.741      0.875
+      GD   emtec/beam_search 2.544      2.229       2.304       2.189        2.36     2.228       2.138       2.378      2.496
+      GD emtec/greedy_search 2.319      2.110       2.109       1.919        2.21     1.981       1.844       2.129      2.384
+      GD      emtec/sampling 1.919      1.867       1.888       1.905        2.00     2.021       1.640       1.993      2.244
+      GD          emtec/topk 2.157      1.935       2.064       1.817        2.11     1.666       1.694       1.784      2.281
+      GD          emtec/topp 2.874      2.550       2.801       2.504        2.82     2.494       2.505       2.626      3.030
+      GD             meco_en 2.406      2.142       2.360       2.332        2.42     2.244       2.344       2.520      2.484
+      GD             onestop 1.772      1.672       1.709       1.630        1.77     1.671       1.664       1.704      1.870
+      GD               provo 1.904      1.772       1.939       1.492        1.85     1.785       1.430       1.840      1.999
+     TFT   emtec/beam_search 5.510      5.556       5.583       5.633        5.37     5.735       5.539       5.498      5.260
+     TFT emtec/greedy_search 5.217      5.038       5.172       4.837        4.93     4.814       4.570       5.064      5.212
+     TFT      emtec/sampling 4.526      4.451       4.498       4.599        4.38     4.734       4.224       4.758      4.731
+     TFT          emtec/topk 4.122      4.081       4.303       4.115        4.06     4.028       3.926       3.999      4.320
+     TFT          emtec/topp 5.408      5.159       5.413       5.137        5.18     5.206       5.093       5.163      5.471
+     TFT             meco_en 6.166      5.746       6.332       5.937        6.28     6.050       5.960       6.500      5.998
+     TFT             onestop 4.723      4.713       4.780       4.793        4.74     4.747       4.768       4.708      4.828
+     TFT               provo 4.115      3.723       3.881       3.392        3.79     3.766       3.446       3.855      4.042
+ measure               group  gpt2 gpt2-large gpt2-medium pythia-1.4b pythia-160m pythia-1b pythia-2.8b pythia-410m pythia-70m
+  <char>              <char> <num>      <num>       <num>       <num>       <num>     <num>       <num>       <num>      <num>
+
+wrote out/lmer/scaling_decoding 

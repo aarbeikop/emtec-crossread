@@ -1,0 +1,167 @@
+  grouped: scored EleutherAI__pythia-1.4b
+  grouped: scored EleutherAI__pythia-160m
+  grouped: scored EleutherAI__pythia-1b
+  grouped: scored EleutherAI__pythia-2.8b
+  grouped: scored EleutherAI__pythia-410m
+  grouped: scored EleutherAI__pythia-70m
+  grouped: scored gpt2
+  grouped: scored gpt2-large
+  grouped: scored gpt2-medium
+
+== per group (rel_T1 = inverse scaling at T=1, rel_Tstar = after calibration; < 0 = bigger LMs fit worse) ==
+              group  n_texts  measure      stat  estimate      lo     hi  p_boot
+  emtec/beam_search       84      FFD    rel_T1    -0.472  -2.086  0.322   0.104
+  emtec/beam_search       84      FFD rel_Tstar    -0.416  -1.330  0.132   0.132
+  emtec/beam_search       84       GD    rel_T1    -0.292  -0.692  0.083   0.102
+  emtec/beam_search       84       GD rel_Tstar    -0.242  -0.612  0.094   0.140
+  emtec/beam_search       84      TFT    rel_T1    -0.079  -0.312  0.127   0.374
+  emtec/beam_search       84      TFT rel_Tstar    -0.069  -0.261  0.127   0.446
+  emtec/beam_search       84 reg_rate    rel_T1     1.032  -4.094  6.066   0.314
+  emtec/beam_search       84 reg_rate rel_Tstar     0.811  -0.573  2.073   0.428
+  emtec/beam_search       84   reread    rel_T1     0.083  -0.157  0.522   0.426
+  emtec/beam_search       84   reread rel_Tstar     0.080  -0.104  0.454   0.398
+emtec/greedy_search      126      FFD    rel_T1    -0.296  -0.977  0.051   0.060
+emtec/greedy_search      126      FFD rel_Tstar    -0.247  -0.719  0.026   0.070
+emtec/greedy_search      126       GD    rel_T1    -0.374  -0.891 -0.078   0.022
+emtec/greedy_search      126       GD rel_Tstar    -0.283  -0.681 -0.030   0.032
+emtec/greedy_search      126      TFT    rel_T1    -0.180  -0.388  0.017   0.068
+emtec/greedy_search      126      TFT rel_Tstar    -0.105  -0.316  0.072   0.178
+emtec/greedy_search      126 reg_rate    rel_T1    -3.342 -14.784 14.657   0.606
+emtec/greedy_search      126 reg_rate rel_Tstar    -0.522  -2.902  0.883   0.638
+emtec/greedy_search      126   reread    rel_T1    -0.123  -0.306  0.074   0.158
+emtec/greedy_search      126   reread rel_Tstar    -0.015  -0.221  0.149   0.714
+     emtec/sampling      126      FFD    rel_T1     0.067  -1.984  1.587   0.918
+     emtec/sampling      126      FFD rel_Tstar     0.221  -0.159  0.864   0.260
+     emtec/sampling      126       GD    rel_T1    -0.055  -0.397  0.278   0.626
+     emtec/sampling      126       GD rel_Tstar     0.065  -0.111  0.285   0.472
+     emtec/sampling      126      TFT    rel_T1     0.011  -0.152  0.139   0.888
+     emtec/sampling      126      TFT rel_Tstar     0.018  -0.121  0.128   0.662
+     emtec/sampling      126 reg_rate    rel_T1    -0.599  -4.495  3.222   0.146
+     emtec/sampling      126 reg_rate rel_Tstar    -0.486  -0.875  0.109   0.406
+     emtec/sampling      126   reread    rel_T1     0.099  -0.059  0.246   0.148
+     emtec/sampling      126   reread rel_Tstar     0.097  -0.063  0.245   0.156
+         emtec/topk      126      FFD    rel_T1    -0.446  -0.834 -0.177   0.000
+         emtec/topk      126      FFD rel_Tstar    -0.368  -0.647 -0.112   0.012
+         emtec/topk      126       GD    rel_T1    -0.341  -0.657 -0.154   0.002
+         emtec/topk      126       GD rel_Tstar    -0.248  -0.487 -0.044   0.028
+         emtec/topk      126      TFT    rel_T1    -0.055  -0.248  0.108   0.458
+         emtec/topk      126      TFT rel_Tstar    -0.056  -0.216  0.098   0.470
+         emtec/topk      126 reg_rate    rel_T1    -0.335  -1.029  0.096   0.096
+         emtec/topk      126 reg_rate rel_Tstar    -0.319  -0.778  0.210   0.228
+         emtec/topk      126   reread    rel_T1     0.086  -0.377  0.340   0.512
+         emtec/topk      126   reread rel_Tstar     0.098  -0.246  0.283   0.494
+         emtec/topp      126      FFD    rel_T1    -0.439  -0.848 -0.185   0.000
+         emtec/topp      126      FFD rel_Tstar    -0.396  -0.735 -0.190   0.000
+         emtec/topp      126       GD    rel_T1    -0.311  -0.650 -0.056   0.018
+         emtec/topp      126       GD rel_Tstar    -0.224  -0.469 -0.036   0.022
+         emtec/topp      126      TFT    rel_T1    -0.127  -0.345  0.015   0.084
+         emtec/topp      126      TFT rel_Tstar    -0.088  -0.264  0.046   0.210
+         emtec/topp      126 reg_rate    rel_T1    -0.852  -6.912  9.755   0.452
+         emtec/topp      126 reg_rate rel_Tstar    -0.074  -1.183  0.332   0.848
+         emtec/topp      126   reread    rel_T1     0.040  -0.191  0.245   0.638
+         emtec/topp      126   reread rel_Tstar     0.040  -0.113  0.241   0.436
+            meco_en       12      FFD    rel_T1    -0.624  -2.694  1.019   0.118
+            meco_en       12      FFD rel_Tstar    -0.120  -0.717  0.022   0.132
+            meco_en       12       GD    rel_T1    -0.293  -1.221  0.518   0.168
+            meco_en       12       GD rel_Tstar    -0.048  -0.348  0.148   0.680
+            meco_en       12      TFT    rel_T1    -0.023  -0.589  0.316   0.916
+            meco_en       12      TFT rel_Tstar     0.086  -0.172  0.332   0.520
+            meco_en       12 reg_rate    rel_T1     0.206  -0.379  1.198   0.340
+            meco_en       12 reg_rate rel_Tstar     0.141  -0.226  0.349   0.480
+            meco_en       12   reread    rel_T1     0.150  -0.504  0.534   0.426
+            meco_en       12   reread rel_Tstar     0.181  -0.135  0.423   0.204
+            onestop      324      FFD    rel_T1    -0.078  -0.178  0.012   0.092
+            onestop      324      FFD rel_Tstar    -0.058  -0.153  0.029   0.186
+            onestop      324       GD    rel_T1     0.006  -0.066  0.071   0.852
+            onestop      324       GD rel_Tstar     0.027  -0.040  0.086   0.412
+            onestop      324      TFT    rel_T1     0.134   0.042  0.204   0.000
+            onestop      324      TFT rel_Tstar     0.137   0.047  0.207   0.000
+            onestop      324 reg_rate    rel_T1    -0.172  -0.998  0.750   0.586
+            onestop      324 reg_rate rel_Tstar     0.118  -0.262  0.202   0.304
+            onestop      324   reread    rel_T1     0.164   0.064  0.246   0.002
+            onestop      324   reread rel_Tstar     0.169   0.072  0.249   0.002
+              provo       55      FFD    rel_T1    -0.107  -0.379  0.123   0.352
+              provo       55      FFD rel_Tstar    -0.045  -0.294  0.174   0.604
+              provo       55       GD    rel_T1    -0.167  -0.359  0.018   0.072
+              provo       55       GD rel_Tstar    -0.106  -0.295  0.083   0.272
+              provo       55      TFT    rel_T1    -0.036  -0.160  0.074   0.536
+              provo       55      TFT rel_Tstar    -0.050  -0.163  0.063   0.422
+              provo       55 reg_rate    rel_T1    -0.127  -1.905  1.610   0.694
+              provo       55 reg_rate rel_Tstar    -0.078  -0.412  0.029   0.134
+              provo       55   reread    rel_T1     0.024  -0.114  0.155   0.696
+              provo       55   reread rel_Tstar     0.003  -0.135  0.134   0.880
+
+== contrasts (< 0 = more inverse scaling in the first group) ==
+ measure                          contrast  paired      stat   diff      lo     hi  p_boot
+     FFD emtec: deterministic - stochastic    True    rel_T1 -0.111  -1.711  1.235   0.642
+     FFD emtec: deterministic - stochastic    True rel_Tstar -0.151  -0.833  0.259   0.496
+     FFD     emtec deterministic - meco_en   False    rel_T1  0.240  -2.438  3.286   0.564
+     FFD     emtec deterministic - meco_en   False rel_Tstar -0.212  -0.757  0.485   0.616
+     FFD        emtec stochastic - meco_en   False    rel_T1  0.351  -1.662  2.762   0.360
+     FFD        emtec stochastic - meco_en   False rel_Tstar -0.061  -0.319  0.595   0.940
+     FFD     emtec deterministic - onestop   False    rel_T1 -0.306  -1.560  0.226   0.118
+     FFD     emtec deterministic - onestop   False rel_Tstar -0.274  -0.821  0.088   0.106
+     FFD        emtec stochastic - onestop   False    rel_T1 -0.195  -0.969  0.298   0.218
+     FFD        emtec stochastic - onestop   False rel_Tstar -0.123  -0.360  0.125   0.204
+     FFD       emtec deterministic - provo   False    rel_T1 -0.277  -1.439  0.419   0.254
+     FFD       emtec deterministic - provo   False rel_Tstar -0.287  -0.912  0.187   0.196
+     FFD          emtec stochastic - provo   False    rel_T1 -0.165  -0.951  0.364   0.406
+     FFD          emtec stochastic - provo   False rel_Tstar -0.136  -0.460  0.216   0.324
+      GD emtec: deterministic - stochastic    True    rel_T1 -0.097  -0.455  0.226   0.438
+      GD emtec: deterministic - stochastic    True rel_Tstar -0.127  -0.410  0.111   0.298
+      GD     emtec deterministic - meco_en   False    rel_T1 -0.040  -1.043  1.049   0.824
+      GD     emtec deterministic - meco_en   False rel_Tstar -0.215  -0.551  0.163   0.278
+      GD        emtec stochastic - meco_en   False    rel_T1  0.057  -0.767  1.090   0.838
+      GD        emtec stochastic - meco_en   False rel_Tstar -0.088  -0.312  0.239   0.628
+      GD     emtec deterministic - onestop   False    rel_T1 -0.339  -0.715 -0.093   0.016
+      GD     emtec deterministic - onestop   False rel_Tstar -0.290  -0.573 -0.072   0.016
+      GD        emtec stochastic - onestop   False    rel_T1 -0.242  -0.484 -0.065   0.014
+      GD        emtec stochastic - onestop   False rel_Tstar -0.163  -0.305 -0.024   0.024
+      GD       emtec deterministic - provo   False    rel_T1 -0.166  -0.613  0.120   0.272
+      GD       emtec deterministic - provo   False rel_Tstar -0.157  -0.499  0.134   0.310
+      GD          emtec stochastic - provo   False    rel_T1 -0.068  -0.404  0.186   0.592
+      GD          emtec stochastic - provo   False rel_Tstar -0.030  -0.258  0.194   0.804
+     TFT emtec: deterministic - stochastic    True    rel_T1 -0.073  -0.198  0.082   0.294
+     TFT emtec: deterministic - stochastic    True rel_Tstar -0.045  -0.173  0.079   0.398
+     TFT     emtec deterministic - meco_en   False    rel_T1 -0.106  -0.511  0.534   0.594
+     TFT     emtec deterministic - meco_en   False rel_Tstar -0.173  -0.467  0.124   0.252
+     TFT        emtec stochastic - meco_en   False    rel_T1 -0.033  -0.423  0.579   0.830
+     TFT        emtec stochastic - meco_en   False rel_Tstar -0.128  -0.401  0.147   0.402
+     TFT     emtec deterministic - onestop   False    rel_T1 -0.263  -0.466 -0.083   0.012
+     TFT     emtec deterministic - onestop   False rel_Tstar -0.224  -0.409 -0.057   0.008
+     TFT        emtec stochastic - onestop   False    rel_T1 -0.190  -0.357 -0.066   0.004
+     TFT        emtec stochastic - onestop   False rel_Tstar -0.179  -0.321 -0.059   0.002
+     TFT       emtec deterministic - provo   False    rel_T1 -0.093  -0.312  0.108   0.344
+     TFT       emtec deterministic - provo   False rel_Tstar -0.038  -0.245  0.143   0.620
+     TFT          emtec stochastic - provo   False    rel_T1 -0.020  -0.215  0.135   0.768
+     TFT          emtec stochastic - provo   False rel_Tstar  0.008  -0.160  0.154   0.922
+reg_rate emtec: deterministic - stochastic    True    rel_T1 -0.560 -14.572 15.914   0.862
+reg_rate emtec: deterministic - stochastic    True rel_Tstar  0.438  -1.475  2.194   0.600
+reg_rate     emtec deterministic - meco_en   False    rel_T1 -1.361 -10.254 10.511   0.764
+reg_rate     emtec deterministic - meco_en   False rel_Tstar  0.004  -1.824  1.741   0.886
+reg_rate        emtec stochastic - meco_en   False    rel_T1 -0.801  -4.892  5.922   0.244
+reg_rate        emtec stochastic - meco_en   False rel_Tstar -0.434  -0.775  0.116   0.124
+reg_rate     emtec deterministic - onestop   False    rel_T1 -0.983 -10.806 11.052   0.998
+reg_rate     emtec deterministic - onestop   False rel_Tstar  0.026  -1.874  1.727   0.910
+reg_rate        emtec stochastic - onestop   False    rel_T1 -0.423  -4.899  6.835   0.570
+reg_rate        emtec stochastic - onestop   False rel_Tstar -0.411  -0.752  0.090   0.108
+reg_rate       emtec deterministic - provo   False    rel_T1 -1.028 -10.867 11.267   0.954
+reg_rate       emtec deterministic - provo   False rel_Tstar  0.223  -1.665  1.816   0.816
+reg_rate          emtec stochastic - provo   False    rel_T1 -0.468  -5.244  7.057   0.536
+reg_rate          emtec stochastic - provo   False rel_Tstar -0.215  -0.586  0.265   0.448
+  reread emtec: deterministic - stochastic    True    rel_T1 -0.095  -0.280  0.208   0.434
+  reread emtec: deterministic - stochastic    True rel_Tstar -0.045  -0.205  0.180   0.588
+  reread     emtec deterministic - meco_en   False    rel_T1 -0.170  -0.627  0.637   0.496
+  reread     emtec deterministic - meco_en   False rel_Tstar -0.148  -0.439  0.225   0.404
+  reread        emtec stochastic - meco_en   False    rel_T1 -0.075  -0.580  0.613   0.684
+  reread        emtec stochastic - meco_en   False rel_Tstar -0.102  -0.392  0.240   0.502
+  reread     emtec deterministic - onestop   False    rel_T1 -0.184  -0.366  0.094   0.148
+  reread     emtec deterministic - onestop   False rel_Tstar -0.136  -0.317  0.086   0.184
+  reread        emtec stochastic - onestop   False    rel_T1 -0.089  -0.319  0.074   0.280
+  reread        emtec stochastic - onestop   False rel_Tstar -0.090  -0.260  0.060   0.230
+  reread       emtec deterministic - provo   False    rel_T1 -0.044  -0.263  0.248   0.736
+  reread       emtec deterministic - provo   False rel_Tstar  0.030  -0.171  0.284   0.782
+  reread          emtec stochastic - provo   False    rel_T1  0.051  -0.200  0.247   0.630
+  reread          emtec stochastic - provo   False rel_Tstar  0.075  -0.130  0.260   0.436
+
+wrote out/calibration/joint_split-decoding/

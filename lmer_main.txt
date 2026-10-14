@@ -1,0 +1,139 @@
+  emtec                  FFD    183965 obs    42 items  0.5 min
+  emtec                  GD     183965 obs    42 items  0.5 min
+  emtec                  TFT    215962 obs    42 items  0.6 min
+  great                  FFD     14433 obs    39 items  0.0 min
+  great                  GD      14433 obs    39 items  0.0 min
+  great                  TFT     20730 obs    39 items  0.0 min
+  meco_en                FFD     29794 obs    12 items  0.0 min
+  meco_en                GD      29794 obs    12 items  0.0 min
+  meco_en                TFT     49814 obs    12 items  0.1 min
+  oasst                  FFD     17775 obs   603 items  0.0 min
+  oasst                  GD      17775 obs   603 items  0.0 min
+  oasst                  TFT     24663 obs   604 items  0.0 min
+  onestop                FFD    377345 obs   162 items  0.9 min
+  onestop                GD     377345 obs   162 items  0.8 min
+  onestop                TFT    548445 obs   162 items  1.1 min
+  provo                  FFD    101908 obs    55 items  0.1 min
+  provo                  GD     101908 obs    55 items  0.1 min
+  provo                  TFT    123147 obs    55 items  0.1 min
+
+== relative scaling slope per group (< 0 = bigger LMs fit worse; trial-level LMMs) ==
+   group measure variant  n_obs n_items rel_slope      lo      hi p_boot
+  <char>  <char>  <char>  <int>   <int>     <num>   <num>   <num>  <num>
+   emtec     FFD      T1 183965      42   -0.5425 -0.9461 -0.3023  0.000
+   great     FFD      T1  14433      39    0.2848 -6.8110  9.1946  0.756
+ meco_en     FFD      T1  29794      12   -0.3413 -1.1411  0.1429  0.096
+   oasst     FFD      T1  17775     603    3.3261 -6.2052  4.9709  0.944
+ onestop     FFD      T1 377345     162   -0.1194 -0.2239 -0.0276  0.012
+   provo     FFD      T1 101908      55   -0.4032 -0.7490 -0.1665  0.000
+   emtec     FFD   Tstar 183965      42   -0.5396 -0.9457 -0.3262  0.000
+   great     FFD   Tstar  14433      39    0.2873 -8.3387 11.2255  0.682
+ meco_en     FFD   Tstar  29794      12   -0.1001 -0.4316  0.1419  0.442
+   oasst     FFD   Tstar  17775     603    6.4134 -8.5065  7.0086  0.956
+ onestop     FFD   Tstar 377345     162   -0.1221 -0.2238 -0.0346  0.006
+   provo     FFD   Tstar 101908      55   -0.2955 -0.5818 -0.0595  0.014
+   emtec      GD      T1 183965      42   -0.4666 -0.7897 -0.2700  0.000
+   great      GD      T1  14433      39   -0.2582 -7.1261  4.7297  0.736
+ meco_en      GD      T1  29794      12   -0.1851 -1.1189  0.0746  0.168
+   oasst      GD      T1  17775     603   -0.0922 -2.5332  3.1428  0.850
+ onestop      GD      T1 377345     162   -0.0578 -0.1505  0.0243  0.132
+   provo      GD      T1 101908      55   -0.2158 -0.4401 -0.0135  0.032
+   emtec      GD   Tstar 183965      42   -0.3574 -0.5830 -0.1968  0.000
+   great      GD   Tstar  14433      39   -0.2452 -5.7948  5.6427  0.788
+ meco_en      GD   Tstar  29794      12   -0.0123 -0.2238  0.1602  0.960
+   oasst      GD   Tstar  17775     603   -0.0900 -2.1430  2.8945  0.822
+ onestop      GD   Tstar 377345     162   -0.0630 -0.1488  0.0150  0.110
+   provo      GD   Tstar 101908      55   -0.1274 -0.2984  0.0596  0.178
+   emtec     TFT      T1 215962      42   -0.1831 -0.3312 -0.0705  0.000
+   great     TFT      T1  20730      39   -0.1595 -2.1975  0.7521  0.656
+ meco_en     TFT      T1  49814      12   -0.0613 -0.6254  0.1407  0.616
+   oasst     TFT      T1  24663     604   -0.3534 -1.5249 -0.0568  0.030
+ onestop     TFT      T1 548445     162    0.0977  0.0260  0.1604  0.024
+   provo     TFT      T1 123147      55   -0.0581 -0.2108  0.0802  0.440
+   emtec     TFT   Tstar 215962      42   -0.1915 -0.3354 -0.0773  0.000
+   great     TFT   Tstar  20730      39   -0.1224 -0.8257  0.1939  0.478
+ meco_en     TFT   Tstar  49814      12   -0.0376 -0.4547  0.1822  0.836
+   oasst     TFT   Tstar  24663     604   -0.4013 -1.6150 -0.0906  0.020
+ onestop     TFT   Tstar 548445     162    0.0986  0.0286  0.1628  0.022
+   provo     TFT   Tstar 123147      55   -0.0603 -0.2057  0.0656  0.384
+   group measure variant  n_obs n_items rel_slope      lo      hi p_boot
+  <char>  <char>  <char>  <int>   <int>     <num>   <num>   <num>  <num>
+
+== contrasts (< 0 = more inverse scaling in the first group) ==
+ measure variant        contrast paired    diff      lo       hi p_boot
+  <char>  <char>          <char> <lgcl>   <num>   <num>    <num>  <num>
+     FFD      T1 emtec - meco_en  FALSE -0.2012  -0.815  0.59820  0.418
+     FFD      T1   emtec - oasst  FALSE -3.8686  -5.400  5.79990  0.408
+     FFD      T1 emtec - onestop  FALSE -0.4231  -0.839 -0.17049  0.002
+     FFD      T1   emtec - provo  FALSE -0.1393  -0.599  0.28087  0.468
+     FFD      T1 great - meco_en  FALSE  0.6261  -6.763  9.44659  0.574
+     FFD      T1   great - oasst  FALSE -3.0412 -12.639 14.14694  0.846
+     FFD      T1 great - onestop  FALSE  0.4042  -6.706  9.35614  0.682
+     FFD      T1   great - provo  FALSE  0.6881  -6.503  9.46674  0.538
+     FFD   Tstar emtec - meco_en  FALSE -0.4395  -0.893 -0.03878  0.034
+     FFD   Tstar   emtec - oasst  FALSE -6.9530  -7.570  7.95968  0.504
+     FFD   Tstar emtec - onestop  FALSE -0.4175  -0.820 -0.18637  0.002
+     FFD   Tstar   emtec - provo  FALSE -0.2441  -0.676  0.11704  0.156
+     FFD   Tstar great - meco_en  FALSE  0.3873  -8.248 11.16399  0.622
+     FFD   Tstar   great - oasst  FALSE -6.1261 -15.792 23.64909  0.838
+     FFD   Tstar great - onestop  FALSE  0.4093  -8.243 11.39382  0.606
+     FFD   Tstar   great - provo  FALSE  0.5827  -8.132 11.58641  0.524
+      GD      T1 emtec - meco_en  FALSE -0.2815  -0.704  0.70615  0.232
+      GD      T1   emtec - oasst  FALSE -0.3744  -3.794  1.92180  0.376
+      GD      T1 emtec - onestop  FALSE -0.4089  -0.724 -0.18811  0.000
+      GD      T1   emtec - provo  FALSE -0.2508  -0.616  0.02704  0.092
+      GD      T1 great - meco_en  FALSE -0.0731  -7.678  6.83007  0.984
+      GD      T1   great - oasst  FALSE -0.1660 -11.729  8.17463  0.846
+      GD      T1 great - onestop  FALSE -0.2004  -7.044  4.80747  0.804
+      GD      T1   great - provo  FALSE -0.0424  -6.991  5.07777  0.966
+      GD   Tstar emtec - meco_en  FALSE -0.3452  -0.620 -0.07697  0.014
+      GD   Tstar   emtec - oasst  FALSE -0.2674  -3.135  1.80300  0.420
+      GD   Tstar emtec - onestop  FALSE -0.2945  -0.536 -0.11450  0.002
+      GD   Tstar   emtec - provo  FALSE -0.2301  -0.510  0.00526  0.052
+      GD   Tstar great - meco_en  FALSE -0.2329  -5.936  5.57387  0.798
+      GD   Tstar   great - oasst  FALSE -0.1551 -11.541  7.10423  0.860
+      GD   Tstar great - onestop  FALSE -0.1822  -5.756  5.72122  0.846
+      GD   Tstar   great - provo  FALSE -0.1178  -5.758  5.73428  0.910
+     TFT      T1 emtec - meco_en  FALSE -0.1218  -0.360  0.41455  0.424
+     TFT      T1   emtec - oasst  FALSE  0.1703  -0.186  1.33368  0.354
+     TFT      T1 emtec - onestop  FALSE -0.2808  -0.442 -0.14264  0.000
+     TFT      T1   emtec - provo  FALSE -0.1250  -0.331  0.07394  0.196
+     TFT      T1 great - meco_en  FALSE -0.0982  -2.211  1.24128  0.874
+     TFT      T1   great - oasst  FALSE  0.1939  -2.107  2.37417  0.560
+     TFT      T1 great - onestop  FALSE -0.2572  -2.331  0.63585  0.430
+     TFT      T1   great - provo  FALSE -0.1014  -2.150  0.80061  0.788
+     TFT   Tstar emtec - meco_en  FALSE -0.1539  -0.415  0.26222  0.330
+     TFT   Tstar   emtec - oasst  FALSE  0.2098  -0.161  1.45228  0.244
+     TFT   Tstar emtec - onestop  FALSE -0.2900  -0.448 -0.15314  0.000
+     TFT   Tstar   emtec - provo  FALSE -0.1312  -0.328  0.06740  0.168
+     TFT   Tstar great - meco_en  FALSE -0.0849  -0.821  0.41126  0.684
+     TFT   Tstar   great - oasst  FALSE  0.2789  -0.588  1.56260  0.312
+     TFT   Tstar great - onestop  FALSE -0.2210  -0.940  0.09531  0.176
+     TFT   Tstar   great - provo  FALSE -0.0622  -0.770  0.27075  0.744
+ measure variant        contrast paired    diff      lo       hi p_boot
+  <char>  <char>          <char> <lgcl>   <num>   <num>    <num>  <num>
+
+== surprisal coefficient (ms per bit) at T=1 ==
+Key: <measure, group>
+ measure   group  gpt2 gpt2-large gpt2-medium pythia-1.4b pythia-160m pythia-1b pythia-2.8b pythia-410m pythia-70m
+  <char>  <char> <num>      <num>       <num>       <num>       <num>     <num>       <num>       <num>      <num>
+     FFD   emtec 1.091      0.988       1.012       0.946       1.109     0.953       0.884      0.9817      1.141
+     FFD   great 0.282      0.421       0.356       0.265       0.361     0.263       0.267      0.0951      0.831
+     FFD meco_en 0.981      0.860       0.934       0.972       1.049     0.851       0.909      0.9817      1.087
+     FFD   oasst 0.752      0.670       0.637       0.603       0.724     0.672       0.525      0.7098      0.979
+     FFD onestop 0.871      0.806       0.848       0.772       0.900     0.802       0.793      0.8368      0.957
+     FFD   provo 0.826      0.715       0.841       0.560       0.760     0.659       0.493      0.7411      0.875
+      GD   emtec 2.329      2.110       2.204       2.039       2.283     2.046       1.926      2.1479      2.467
+      GD   great 0.942      1.059       0.932       1.107       1.125     0.987       0.798      0.8130      1.711
+      GD meco_en 2.406      2.142       2.360       2.332       2.425     2.244       2.344      2.5202      2.484
+      GD   oasst 2.230      2.150       2.276       2.193       2.336     2.283       2.046      2.2670      2.399
+      GD onestop 1.772      1.672       1.709       1.630       1.774     1.671       1.664      1.7038      1.870
+      GD   provo 1.904      1.772       1.939       1.492       1.846     1.785       1.430      1.8402      1.999
+     TFT   emtec 4.890      4.772       4.920       4.777       4.722     4.815       4.577      4.8261      4.952
+     TFT   great 4.044      4.530       4.460       3.967       4.785     4.476       4.356      4.3666      4.681
+     TFT meco_en 6.166      5.746       6.332       5.937       6.283     6.050       5.960      6.5003      5.998
+     TFT   oasst 4.705      4.150       4.587       4.003       4.812     4.218       3.914      4.3698      5.128
+     TFT onestop 4.723      4.713       4.780       4.793       4.741     4.747       4.768      4.7084      4.828
+     TFT   provo 4.115      3.723       3.881       3.392       3.786     3.766       3.446      3.8549      4.042
+
+wrote out/lmer/scaling 

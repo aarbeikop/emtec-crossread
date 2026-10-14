@@ -29,9 +29,15 @@ def word_predictors(texts: pd.DataFrame, surprisal: pd.DataFrame) -> pd.DataFram
 def aggregate_rts(df: pd.DataFrame) -> pd.DataFrame:
     """Mean over readers per word. Durations: mean over readers who fixated."""
     keys = ["corpus", "text_id", "word_idx"]
-    meta = df.groupby(keys)[["source", "model", "decoding", "genre"]].first()
+    meta_cols = ["source", "model", "decoding", "genre"] + (["item_id"] if "item_id" in df else [])
+    meta = df.groupby(keys)[meta_cols].first()
+    df = df.assign(
+        # rereading = total time minus first pass, for readers who read the word in first pass
+        reread=(df["TFT"] - df["GD"]).where(df["GD"].notna()),
+        reg_out=df["reg_out"] if "reg_out" in df else np.nan)
     agg = df.groupby(keys).agg(FFD=("FFD", "mean"), GD=("GD", "mean"), TFT=("TFT", "mean"),
-                               skip_rate=("skip", "mean"), n_readers=("subject_id", "nunique"))
+                               skip_rate=("skip", "mean"), reg_rate=("reg_out", "mean"),
+                               reread=("reread", "mean"), n_readers=("subject_id", "nunique"))
     return agg.join(meta).reset_index()
 
 

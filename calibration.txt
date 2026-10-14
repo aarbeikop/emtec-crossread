@@ -1,0 +1,469 @@
+
+######## EleutherAI__pythia-1.4b  temps=[0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0]
+
+== T* (best-fitting temperature; >1 = LM over-confident) ==
+ corpus        subset measure  T_star  T_lo  T_hi  p_T_gt_1  dLL_T1  dLL_Tstar  gain_pct  n_words  n_items
+  emtec           all     FFD    1.50  1.00   2.0     0.913   0.003      0.003     7.027    39989       42
+meco_en           all     FFD    4.00  0.75   4.0     0.959   0.003      0.006   104.575     1820       12
+  provo           all     FFD    1.50  1.25   2.0     0.996   0.010      0.012    16.263     2266       55
+  emtec   beam_search     FFD    1.50  0.75   4.0     0.754   0.001      0.002     4.236     5674       42
+  emtec greedy_search     FFD    1.50  0.75   2.5     0.622   0.003      0.003     1.828     8513       42
+  emtec      sampling     FFD    2.50  0.75   4.0     0.927   0.002      0.002    20.282     8479       42
+  emtec          topk     FFD    1.50  0.75   2.5     0.880   0.002      0.003     8.977     8691       42
+  emtec          topp     FFD    1.50  0.75   2.0     0.839   0.004      0.004     7.349     8632       42
+  emtec           all      GD    2.50  1.25   3.0     0.995   0.005      0.006    17.033    39989       42
+meco_en           all      GD    4.00  2.50   4.0     0.997   0.006      0.014   148.899     1820       12
+  provo           all      GD    2.00  1.25   2.0     0.996   0.017      0.020    13.550     2266       55
+  emtec   beam_search      GD    1.50  0.75   3.0     0.813   0.005      0.005     4.452     5674       42
+  emtec greedy_search      GD    2.00  0.75   3.0     0.823   0.004      0.005    11.235     8513       42
+  emtec      sampling      GD    2.50  1.25   3.0     0.983   0.005      0.007    34.332     8479       42
+  emtec          topk      GD    2.00  1.25   3.0     0.991   0.005      0.006    19.491     8691       42
+  emtec          topp      GD    2.50  1.00   3.0     0.969   0.007      0.009    30.942     8632       42
+  emtec           all     TFT    2.00  0.75   2.5     0.816   0.017      0.017     3.962    41465       42
+meco_en           all     TFT    3.00  2.00   4.0     0.999   0.027      0.043    58.329     1831       12
+  provo           all     TFT    1.00  0.75   1.5     0.473   0.048      0.048     0.000     2266       55
+  emtec   beam_search     TFT    1.25  0.75   2.5     0.549   0.016      0.016     0.423     5880       42
+  emtec greedy_search     TFT    2.50  0.75   3.0     0.823   0.016      0.017    11.757     8824       42
+  emtec      sampling     TFT    1.25  0.75   2.5     0.641   0.019      0.019     0.972     8781       42
+  emtec          topk     TFT    1.25  0.75   2.5     0.653   0.014      0.014     0.707     9018       42
+  emtec          topp     TFT    2.50  1.50   3.0     0.981   0.017      0.021    20.678     8962       42
+
+== contrasts on log T* (>0 = first group needs more flattening) ==
+measure                                   contrast  log_ratio     lo    hi  p_boot
+    FFD                            emtec - meco_en     -0.875 -1.386 0.693   0.108
+    FFD                              emtec - provo      0.000 -0.693 0.470   1.000
+    FFD emtec: deterministic - stochastic decoding     -0.217 -0.765 0.551   0.570
+     GD                            emtec - meco_en     -0.470 -1.163 0.000   0.164
+     GD                              emtec - provo      0.223 -0.288 0.693   0.632
+     GD emtec: deterministic - stochastic decoding     -0.286 -0.972 0.196   0.274
+    TFT                            emtec - meco_en     -0.405 -1.386 0.223   0.358
+    TFT                              emtec - provo      0.511 -0.511 1.204   0.474
+    TFT emtec: deterministic - stochastic decoding     -0.102 -0.639 0.397   0.678
+
+== surprisal slopes: ms per bit vs ms per within-corpus SD, at T=1 and T* ==
+corpus                       emtec  meco_en  provo
+measure temperature unit                          
+FFD     T*          per_bit   1.64     0.99   1.07
+                    per_sd    4.61     2.39   3.63
+        T=1         per_bit   1.36     1.06   0.78
+                    per_sd    4.40     3.81   3.35
+GD      T*          per_bit   3.68     3.32   2.43
+                    per_sd    8.90     8.03   7.19
+        T=1         per_bit   2.46     2.03   1.64
+                    per_sd    7.96     7.30   7.03
+TFT     T*          per_bit   7.55    10.25   3.38
+                    per_sd   19.48    23.42  14.48
+        T=1         per_bit   5.58     5.40   3.38
+                    per_sd   18.10    19.42  14.48
+
+######## EleutherAI__pythia-160m  temps=[0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0]
+
+== T* (best-fitting temperature; >1 = LM over-confident) ==
+ corpus        subset measure  T_star  T_lo  T_hi  p_T_gt_1  dLL_T1  dLL_Tstar  gain_pct  n_words  n_items
+  emtec           all     FFD    1.25  0.75 1.500     0.818   0.004      0.004     2.400    39875       42
+meco_en           all     FFD    3.00  0.75 4.000     0.933   0.006      0.008    43.534     1815       12
+  provo           all     FFD    1.50  1.00 1.500     0.945   0.011      0.012     7.373     2266       55
+  emtec   beam_search     FFD    1.00  0.75 2.000     0.310   0.003      0.003     0.000     5656       42
+  emtec greedy_search     FFD    1.25  0.75 2.500     0.675   0.003      0.003     2.677     8490       42
+  emtec      sampling     FFD    2.00  0.75 4.000     0.728   0.002      0.002     1.607     8451       42
+  emtec          topk     FFD    1.25  0.75 2.000     0.728   0.004      0.004     2.091     8666       42
+  emtec          topp     FFD    1.50  1.00 1.500     0.910   0.006      0.006     6.477     8612       42
+  emtec           all      GD    1.50  1.25 2.000     0.990   0.007      0.008     6.171    39875       42
+meco_en           all      GD    3.00  1.00 4.000     0.971   0.010      0.016    64.015     1815       12
+  provo           all      GD    1.50  0.75 2.000     0.794   0.022      0.022     2.873     2266       55
+  emtec   beam_search      GD    1.25  0.75 1.512     0.496   0.007      0.007     0.127     5656       42
+  emtec greedy_search      GD    1.50  0.75 2.500     0.654   0.006      0.006     1.612     8490       42
+  emtec      sampling      GD    2.50  1.50 4.000     0.988   0.005      0.007    34.615     8451       42
+  emtec          topk      GD    1.50  0.75 2.000     0.885   0.007      0.008     5.003     8666       42
+  emtec          topp      GD    2.00  1.25 2.500     0.989   0.010      0.011    12.855     8612       42
+  emtec           all     TFT    1.50  1.00 2.500     0.860   0.018      0.018     2.822    41351       42
+meco_en           all     TFT    2.50  2.00 4.000     0.997   0.038      0.052    36.800     1826       12
+  provo           all     TFT    1.00  0.75 1.250     0.093   0.051      0.051     0.000     2266       55
+  emtec   beam_search     TFT    1.25  0.75 2.000     0.581   0.018      0.018     0.906     5862       42
+  emtec greedy_search     TFT    1.50  0.75 2.500     0.699   0.017      0.018     1.969     8801       42
+  emtec      sampling     TFT    1.25  0.75 2.500     0.739   0.017      0.018     2.046     8753       42
+  emtec          topk     TFT    1.50  0.75 2.500     0.809   0.014      0.014     3.035     8993       42
+  emtec          topp     TFT    2.00  1.00 2.500     0.955   0.020      0.022     9.154     8942       42
+
+== contrasts on log T* (>0 = first group needs more flattening) ==
+measure                                   contrast  log_ratio     lo    hi  p_boot
+    FFD                            emtec - meco_en     -0.875 -1.386 0.511   0.144
+    FFD                              emtec - provo      0.000 -0.511 0.288   1.000
+    FFD emtec: deterministic - stochastic decoding     -0.256 -0.765 0.356   0.376
+     GD                            emtec - meco_en     -0.693 -1.163 0.470   0.164
+     GD                              emtec - provo      0.182 -0.288 0.693   0.806
+     GD emtec: deterministic - stochastic decoding     -0.422 -0.911 0.034   0.078
+    TFT                            emtec - meco_en     -0.511 -1.163 0.000   0.218
+    TFT                              emtec - provo      0.511 -0.182 0.981   0.224
+    TFT emtec: deterministic - stochastic decoding     -0.185 -0.672 0.340   0.430
+
+== surprisal slopes: ms per bit vs ms per within-corpus SD, at T=1 and T* ==
+corpus                       emtec  meco_en  provo
+measure temperature unit                          
+FFD     T*          per_bit   1.64     1.35   1.21
+                    per_sd    5.55     3.21   4.25
+        T=1         per_bit   1.45     1.19   0.92
+                    per_sd    5.46     4.85   4.11
+GD      T*          per_bit   3.18     3.93   2.42
+                    per_sd    9.94     9.35   8.54
+        T=1         per_bit   2.55     2.28   1.92
+                    per_sd    9.63     9.29   8.61
+TFT     T*          per_bit   6.51    10.86   3.64
+                    per_sd   20.38    26.61  16.33
+        T=1         per_bit   5.26     5.79   3.64
+                    per_sd   19.84    23.58  16.33
+
+######## EleutherAI__pythia-1b  temps=[0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0]
+
+== T* (best-fitting temperature; >1 = LM over-confident) ==
+ corpus        subset measure  T_star  T_lo  T_hi  p_T_gt_1  dLL_T1  dLL_Tstar  gain_pct  n_words  n_items
+  emtec           all     FFD    1.50  0.75  2.00     0.884   0.003      0.003     5.276    39985       42
+meco_en           all     FFD    4.00  3.00  4.00     0.988   0.002      0.006   206.816     1820       12
+  provo           all     FFD    1.50  1.00  1.50     0.937   0.012      0.013     5.834     2270       55
+  emtec   beam_search     FFD    1.00  0.75  3.00     0.438   0.002      0.002     0.000     5675       42
+  emtec greedy_search     FFD    1.50  0.75  2.50     0.663   0.003      0.003     3.533     8513       42
+  emtec      sampling     FFD    1.50  0.75  4.00     0.825   0.002      0.002     5.646     8477       42
+  emtec          topk     FFD    1.50  0.75  2.50     0.777   0.003      0.003     4.996     8689       42
+  emtec          topp     FFD    1.50  1.00  2.00     0.920   0.004      0.004    12.433     8631       42
+  emtec           all      GD    2.50  1.25  3.00     0.997   0.006      0.006    14.096    39985       42
+meco_en           all      GD    4.00  2.50  4.00     0.999   0.005      0.015   187.470     1820       12
+  provo           all      GD    1.25  1.00  2.00     0.800   0.023      0.023     2.132     2270       55
+  emtec   beam_search      GD    1.25  0.75  3.00     0.707   0.006      0.006     2.172     5675       42
+  emtec greedy_search      GD    2.00  0.75  3.00     0.862   0.004      0.005    11.256     8513       42
+  emtec      sampling      GD    2.50  1.00  3.00     0.967   0.005      0.006    26.958     8477       42
+  emtec          topk      GD    2.00  1.25  3.00     0.980   0.005      0.006    15.169     8689       42
+  emtec          topp      GD    2.50  1.25  3.00     0.984   0.007      0.010    34.887     8631       42
+  emtec           all     TFT    2.00  0.75  2.50     0.805   0.017      0.018     3.050    41461       42
+meco_en           all     TFT    3.00  2.00  4.00     0.999   0.031      0.049    56.647     1831       12
+  provo           all     TFT    1.00  0.75  1.25     0.179   0.056      0.056     0.000     2270       55
+  emtec   beam_search     TFT    1.25  0.75  2.50     0.593   0.017      0.017     0.702     5881       42
+  emtec greedy_search     TFT    2.50  0.75  3.00     0.858   0.015      0.017    16.401     8824       42
+  emtec      sampling     TFT    1.00  0.75  2.50     0.510   0.020      0.020     0.000     8779       42
+  emtec          topk     TFT    1.00  0.75  2.50     0.398   0.014      0.014     0.000     9016       42
+  emtec          topp     TFT    2.50  2.00  3.00     0.986   0.018      0.022    21.235     8961       42
+
+== contrasts on log T* (>0 = first group needs more flattening) ==
+measure                                   contrast  log_ratio     lo     hi  p_boot
+    FFD                            emtec - meco_en     -0.981 -1.674 -0.405   0.028
+    FFD                              emtec - provo      0.182 -0.511  0.693   0.988
+    FFD emtec: deterministic - stochastic decoding     -0.309 -0.866  0.550   0.442
+     GD                            emtec - meco_en     -0.470 -1.163  0.000   0.138
+     GD                              emtec - provo      0.511  0.000  0.916   0.266
+     GD emtec: deterministic - stochastic decoding     -0.353 -0.935  0.201   0.184
+    TFT                            emtec - meco_en     -0.405 -1.386  0.223   0.350
+    TFT                              emtec - provo      0.693 -0.288  1.204   0.362
+    TFT emtec: deterministic - stochastic decoding      0.078 -0.473  0.595   0.722
+
+== surprisal slopes: ms per bit vs ms per within-corpus SD, at T=1 and T* ==
+corpus                       emtec  meco_en  provo
+measure temperature unit                          
+FFD     T*          per_bit   1.63     0.93   1.09
+                    per_sd    4.68     2.27   3.81
+        T=1         per_bit   1.36     0.91   0.85
+                    per_sd    4.49     3.37   3.67
+GD      T*          per_bit   3.68     3.53   2.16
+                    per_sd    9.05     8.59   8.21
+        T=1         per_bit   2.47     1.91   1.88
+                    per_sd    8.16     7.07   8.15
+TFT     T*          per_bit   7.60    10.89   3.67
+                    per_sd   19.93    25.06  15.94
+        T=1         per_bit   5.62     5.51   3.67
+                    per_sd   18.58    20.36  15.94
+
+######## EleutherAI__pythia-410m  temps=[0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0]
+
+== T* (best-fitting temperature; >1 = LM over-confident) ==
+ corpus        subset measure  T_star  T_lo  T_hi  p_T_gt_1  dLL_T1  dLL_Tstar  gain_pct  n_words  n_items
+  emtec           all     FFD    1.50 0.750  2.00     0.733   0.003      0.003     1.893    39948       42
+meco_en           all     FFD    4.00 1.244  4.00     0.975   0.003      0.007   113.618     1817       12
+  provo           all     FFD    1.25 0.750  1.50     0.785   0.012      0.013     2.755     2268       55
+  emtec   beam_search     FFD    1.00 0.750  3.00     0.391   0.002      0.002     0.000     5668       42
+  emtec greedy_search     FFD    1.25 0.750  2.50     0.545   0.003      0.003     0.131     8501       42
+  emtec      sampling     FFD    2.50 0.750  4.00     0.840   0.002      0.002     9.846     8468       42
+  emtec          topk     FFD    1.25 0.750  2.50     0.585   0.003      0.003     0.950     8683       42
+  emtec          topp     FFD    1.50 0.750  2.00     0.830   0.005      0.005     6.906     8628       42
+  emtec           all      GD    2.00 1.000  2.50     0.935   0.006      0.006     5.513    39948       42
+meco_en           all      GD    3.00 1.000  4.00     0.971   0.008      0.014    70.417     1817       12
+  provo           all      GD    1.25 0.750  2.00     0.714   0.023      0.023     1.616     2268       55
+  emtec   beam_search      GD    1.00 0.750  2.00     0.342   0.006      0.006     0.000     5668       42
+  emtec greedy_search      GD    1.25 0.750  3.00     0.683   0.005      0.006     1.632     8501       42
+  emtec      sampling      GD    2.50 1.000  4.00     0.971   0.005      0.006    24.196     8468       42
+  emtec          topk      GD    1.50 0.750  2.50     0.806   0.005      0.006     5.402     8683       42
+  emtec          topp      GD    2.50 1.000  3.00     0.963   0.008      0.009    21.048     8628       42
+  emtec           all     TFT    1.25 0.750  2.50     0.627   0.018      0.018     0.628    41424       42
+meco_en           all     TFT    2.50 1.500  4.00     1.000   0.036      0.050    38.477     1828       12
+  provo           all     TFT    1.00 0.750  1.25     0.118   0.058      0.058     0.000     2268       55
+  emtec   beam_search     TFT    1.00 0.750  2.50     0.373   0.017      0.017     0.000     5874       42
+  emtec greedy_search     TFT    2.50 0.750  3.00     0.650   0.017      0.017     1.775     8812       42
+  emtec      sampling     TFT    1.00 0.750  2.50     0.426   0.020      0.020     0.000     8770       42
+  emtec          topk     TFT    1.00 0.750  2.50     0.353   0.014      0.014     0.000     9010       42
+  emtec          topp     TFT    2.50 1.000  3.00     0.951   0.019      0.022    15.128     8958       42
+
+== contrasts on log T* (>0 = first group needs more flattening) ==
+measure                                   contrast  log_ratio     lo    hi  p_boot
+    FFD                            emtec - meco_en     -0.981 -1.674 0.183   0.068
+    FFD                              emtec - provo      0.000 -0.511 0.693   1.000
+    FFD emtec: deterministic - stochastic decoding     -0.299 -0.864 0.534   0.456
+     GD                            emtec - meco_en     -0.693 -1.386 0.511   0.254
+     GD                              emtec - provo      0.288 -0.407 0.981   0.614
+     GD emtec: deterministic - stochastic decoding     -0.499 -1.060 0.100   0.090
+    TFT                            emtec - meco_en     -0.693 -1.386 0.223   0.258
+    TFT                              emtec - provo      0.288 -0.288 1.204   0.528
+    TFT emtec: deterministic - stochastic decoding     -0.082 -0.558 0.456   0.772
+
+== surprisal slopes: ms per bit vs ms per within-corpus SD, at T=1 and T* ==
+corpus                       emtec  meco_en  provo
+measure temperature unit                          
+FFD     T*          per_bit   1.61     0.93   1.04
+                    per_sd    4.75     2.23   3.97
+        T=1         per_bit   1.32     0.99   0.89
+                    per_sd    4.59     3.78   3.88
+GD      T*          per_bit   3.39     3.75   2.21
+                    per_sd    9.05     8.66   8.43
+        T=1         per_bit   2.46     2.19   1.92
+                    per_sd    8.53     8.31   8.37
+TFT     T*          per_bit   6.13    10.42   3.82
+                    per_sd   19.24    24.77  16.70
+        T=1         per_bit   5.48     5.80   3.82
+                    per_sd   18.96    22.05  16.70
+
+######## EleutherAI__pythia-70m  temps=[0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0]
+
+== T* (best-fitting temperature; >1 = LM over-confident) ==
+ corpus        subset measure  T_star  T_lo  T_hi  p_T_gt_1  dLL_T1  dLL_Tstar  gain_pct  n_words  n_items
+  emtec           all     FFD    1.00  0.75  1.25     0.345   0.004      0.004     0.000    39830       42
+meco_en           all     FFD    4.00  0.75  4.00     0.653   0.006      0.007    15.393     1812       12
+  provo           all     FFD    1.00  0.75  1.50     0.479   0.012      0.012     0.000     2264       55
+  emtec   beam_search     FFD    1.00  0.75  2.00     0.306   0.003      0.003     0.000     5650       42
+  emtec greedy_search     FFD    1.00  0.75  2.00     0.387   0.004      0.004     0.000     8479       42
+  emtec      sampling     FFD    0.75  0.75  4.00     0.625   0.002      0.002     0.666     8442       42
+  emtec          topk     FFD    1.00  0.75  2.00     0.364   0.004      0.004     0.000     8654       42
+  emtec          topp     FFD    1.25  0.75  1.50     0.582   0.007      0.007     0.737     8605       42
+  emtec           all      GD    1.25  0.75  1.50     0.510   0.008      0.008     0.118    39830       42
+meco_en           all      GD    3.00  0.75  4.00     0.846   0.010      0.012    18.900     1812       12
+  provo           all      GD    1.00  0.75  1.50     0.108   0.022      0.022     0.000     2264       55
+  emtec   beam_search      GD    1.00  0.75  1.50     0.191   0.008      0.008     0.000     5650       42
+  emtec greedy_search      GD    0.75  0.75  2.00     0.181   0.007      0.007     2.223     8479       42
+  emtec      sampling      GD    2.00  0.75  3.00     0.745   0.005      0.006     5.789     8442       42
+  emtec          topk      GD    1.25  0.75  2.00     0.782   0.007      0.007     2.204     8654       42
+  emtec          topp      GD    1.25  0.75  2.00     0.776   0.011      0.011     2.019     8605       42
+  emtec           all     TFT    1.00  0.75  1.50     0.222   0.019      0.019     0.000    41306       42
+meco_en           all     TFT    2.00  1.25  4.00     0.985   0.031      0.036    13.641     1823       12
+  provo           all     TFT    0.75  0.75  1.00     0.011   0.051      0.052     2.677     2264       55
+  emtec   beam_search     TFT    1.00  0.75  1.25     0.094   0.018      0.018     0.000     5856       42
+  emtec greedy_search     TFT    0.75  0.75  2.00     0.243   0.018      0.019     0.677     8790       42
+  emtec      sampling     TFT    1.00  0.75  2.00     0.153   0.018      0.018     0.000     8744       42
+  emtec          topk     TFT    1.25  0.75  2.00     0.532   0.014      0.014     0.435     8981       42
+  emtec          topp     TFT    1.25  0.75  2.00     0.652   0.022      0.022     0.810     8935       42
+
+== contrasts on log T* (>0 = first group needs more flattening) ==
+measure                                   contrast  log_ratio     lo    hi  p_boot
+    FFD                            emtec - meco_en     -1.099 -1.674 0.511   0.692
+    FFD                              emtec - provo      0.000 -0.511 0.405   1.000
+    FFD emtec: deterministic - stochastic decoding     -0.197 -0.741 0.480   0.548
+     GD                            emtec - meco_en     -0.875 -1.674 0.511   0.376
+     GD                              emtec - provo      0.223 -0.405 0.693   0.766
+     GD emtec: deterministic - stochastic decoding     -0.449 -0.911 0.224   0.158
+    TFT                            emtec - meco_en     -0.693 -1.386 0.000   0.060
+    TFT                              emtec - provo      0.288 -0.288 0.515   0.706
+    TFT emtec: deterministic - stochastic decoding     -0.170 -0.519 0.299   0.422
+
+== surprisal slopes: ms per bit vs ms per within-corpus SD, at T=1 and T* ==
+corpus                       emtec  meco_en  provo
+measure temperature unit                          
+FFD     T*          per_bit   1.44     0.93   0.97
+                    per_sd    5.91     2.22   4.46
+        T=1         per_bit   1.44     1.20   0.97
+                    per_sd    5.91     5.14   4.46
+GD      T*          per_bit   2.93     3.48   1.98
+                    per_sd   10.66     8.31   9.14
+        T=1         per_bit   2.58     2.28   1.98
+                    per_sd   10.56     9.75   9.14
+TFT     T*          per_bit   5.21     8.09   3.02
+                    per_sd   21.34    22.51  17.48
+        T=1         per_bit   5.21     5.16   3.84
+                    per_sd   21.34    22.06  17.76
+
+######## gpt2-large  temps=[0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0]
+
+== T* (best-fitting temperature; >1 = LM over-confident) ==
+ corpus        subset measure  T_star  T_lo  T_hi  p_T_gt_1  dLL_T1  dLL_Tstar  gain_pct  n_words  n_items
+  emtec           all     FFD    1.50  1.00  2.00     0.901   0.003      0.003     6.184    40037       42
+meco_en           all     FFD    4.00  0.75  4.00     0.948   0.002      0.005   125.239     1821       12
+  provo           all     FFD    1.25  0.75  2.00     0.731   0.012      0.012     2.763     2271       55
+  emtec   beam_search     FFD    1.25  0.75  4.00     0.792   0.002      0.002     5.700     5680       42
+  emtec greedy_search     FFD    1.50  0.75  2.50     0.785   0.003      0.003     5.968     8523       42
+  emtec      sampling     FFD    2.50  0.75  4.00     0.901   0.002      0.002    19.889     8486       42
+  emtec          topk     FFD    1.50  0.75  2.00     0.804   0.003      0.003     5.762     8703       42
+  emtec          topp     FFD    1.50  0.75  2.00     0.791   0.005      0.005     5.492     8645       42
+  emtec           all      GD    2.50  1.25  3.00     0.986   0.006      0.007    11.724    40037       42
+meco_en           all      GD    4.00  1.50  4.00     0.991   0.004      0.011   183.588     1821       12
+  provo           all      GD    1.25  0.75  2.00     0.677   0.020      0.020     1.493     2271       55
+  emtec   beam_search      GD    1.50  1.00  4.00     0.879   0.005      0.006     5.872     5680       42
+  emtec greedy_search      GD    3.00  1.00  4.00     0.942   0.006      0.007    23.295     8523       42
+  emtec      sampling      GD    2.50  1.00  4.00     0.961   0.005      0.006    19.772     8486       42
+  emtec          topk      GD    1.50  0.75  3.00     0.890   0.006      0.006     6.379     8703       42
+  emtec          topp      GD    3.00  1.00  4.00     0.966   0.008      0.010    24.976     8645       42
+  emtec           all     TFT    2.50  0.75  3.00     0.782   0.017      0.018     1.420    41513       42
+meco_en           all     TFT    3.00  1.50  4.00     0.993   0.024      0.036    54.026     1832       12
+  provo           all     TFT    1.00  0.75  1.25     0.111   0.052      0.052     0.000     2271       55
+  emtec   beam_search     TFT    1.25  0.75  3.00     0.630   0.016      0.016     1.314     5886       42
+  emtec greedy_search     TFT    3.00  0.75  4.00     0.896   0.018      0.021    17.563     8834       42
+  emtec      sampling     TFT    1.25  0.75  3.00     0.628   0.019      0.019     1.098     8788       42
+  emtec          topk     TFT    1.00  0.75  3.00     0.513   0.013      0.013     0.000     9030       42
+  emtec          topp     TFT    2.50  0.75  4.00     0.921   0.018      0.020     9.595     8975       42
+
+== contrasts on log T* (>0 = first group needs more flattening) ==
+measure                                   contrast  log_ratio     lo    hi  p_boot
+    FFD                            emtec - meco_en     -0.981 -1.386 0.693   0.196
+    FFD                              emtec - provo      0.000 -0.470 0.693   1.000
+    FFD emtec: deterministic - stochastic decoding     -0.122 -0.589 0.761   0.742
+     GD                            emtec - meco_en     -0.288 -1.163 0.693   0.472
+     GD                              emtec - provo      0.693 -0.288 1.386   0.286
+     GD emtec: deterministic - stochastic decoding     -0.018 -0.663 0.584   0.944
+    TFT                            emtec - meco_en     -0.470 -1.386 0.511   0.550
+    TFT                              emtec - provo      0.693 -0.288 1.386   0.322
+    TFT emtec: deterministic - stochastic decoding      0.129 -0.493 0.683   0.730
+
+== surprisal slopes: ms per bit vs ms per within-corpus SD, at T=1 and T* ==
+corpus                       emtec  meco_en  provo
+measure temperature unit                          
+FFD     T*          per_bit   1.64     0.65   1.04
+                    per_sd    4.77     1.49   3.90
+        T=1         per_bit   1.37     0.89   0.89
+                    per_sd    4.64     3.33   3.83
+GD      T*          per_bit   3.82     3.02   2.05
+                    per_sd    9.13     6.92   7.70
+        T=1         per_bit   2.52     1.80   1.80
+                    per_sd    8.53     6.75   7.70
+TFT     T*          per_bit   8.80     9.94   3.60
+                    per_sd   21.04    22.28  15.44
+        T=1         per_bit   5.66     5.18   3.60
+                    per_sd   19.15    19.45  15.44
+
+######## gpt2-medium  temps=[0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0]
+
+== T* (best-fitting temperature; >1 = LM over-confident) ==
+ corpus        subset measure  T_star  T_lo  T_hi  p_T_gt_1  dLL_T1  dLL_Tstar  gain_pct  n_words  n_items
+  emtec           all     FFD    1.50  1.00 2.000     0.956   0.003      0.003    10.651    40019       42
+meco_en           all     FFD    4.00  0.75 4.000     0.953   0.003      0.005    90.942     1823       12
+  provo           all     FFD    1.25  0.75 1.500     0.766   0.013      0.013     2.943     2274       55
+  emtec   beam_search     FFD    1.25  0.75 4.000     0.800   0.002      0.002     6.252     5678       42
+  emtec greedy_search     FFD    2.00  0.75 2.500     0.909   0.003      0.004    18.286     8520       42
+  emtec      sampling     FFD    2.50  0.75 4.000     0.900   0.001      0.002    35.369     8480       42
+  emtec          topk     FFD    1.50  0.75 2.012     0.872   0.003      0.003     8.325     8698       42
+  emtec          topp     FFD    1.50  0.75 2.000     0.859   0.005      0.005     7.560     8643       42
+  emtec           all      GD    2.00  1.25 3.000     0.994   0.006      0.007    12.090    40019       42
+meco_en           all      GD    4.00  1.25 4.000     0.990   0.005      0.012   152.099     1823       12
+  provo           all      GD    1.25  0.75 2.000     0.557   0.022      0.022     0.362     2274       55
+  emtec   beam_search      GD    1.50  1.00 4.000     0.912   0.005      0.006     8.075     5678       42
+  emtec greedy_search      GD    2.50  1.25 4.000     0.979   0.005      0.007    25.679     8520       42
+  emtec      sampling      GD    2.50  0.75 4.000     0.948   0.004      0.005    23.627     8480       42
+  emtec          topk      GD    1.50  1.00 3.000     0.933   0.006      0.006     8.958     8698       42
+  emtec          topp      GD    3.00  1.00 4.000     0.945   0.008      0.010    17.492     8643       42
+  emtec           all     TFT    1.25  0.75 3.000     0.806   0.017      0.018     2.394    41495       42
+meco_en           all     TFT    3.00  1.25 4.000     0.988   0.027      0.039    42.520     1834       12
+  provo           all     TFT    0.75  0.75 1.250     0.068   0.054      0.055     0.519     2274       55
+  emtec   beam_search     TFT    1.25  0.75 2.500     0.754   0.016      0.016     3.009     5884       42
+  emtec greedy_search     TFT    3.00  0.75 3.000     0.894   0.017      0.020    13.047     8831       42
+  emtec      sampling     TFT    1.25  0.75 2.500     0.624   0.018      0.018     1.208     8782       42
+  emtec          topk     TFT    1.00  0.75 3.000     0.436   0.013      0.013     0.000     9025       42
+  emtec          topp     TFT    2.50  1.00 3.000     0.936   0.019      0.021     8.033     8973       42
+
+== contrasts on log T* (>0 = first group needs more flattening) ==
+measure                                   contrast  log_ratio     lo    hi  p_boot
+    FFD                            emtec - meco_en     -0.875 -1.386 0.693   0.310
+    FFD                              emtec - provo      0.182 -0.225 0.693   0.650
+    FFD emtec: deterministic - stochastic decoding     -0.122 -0.626 0.667   0.674
+     GD                            emtec - meco_en     -0.470 -1.163 0.693   0.346
+     GD                              emtec - provo      0.511 -0.288 1.386   0.308
+     GD emtec: deterministic - stochastic decoding     -0.085 -0.560 0.576   0.752
+    TFT                            emtec - meco_en     -0.693 -1.386 0.511   0.338
+    TFT                              emtec - provo      0.511 -0.183 1.386   0.248
+    TFT emtec: deterministic - stochastic decoding      0.176 -0.386 0.762   0.520
+
+== surprisal slopes: ms per bit vs ms per within-corpus SD, at T=1 and T* ==
+corpus                       emtec  meco_en  provo
+measure temperature unit                          
+FFD     T*          per_bit   1.62     0.55   1.09
+                    per_sd    4.71     1.26   4.08
+        T=1         per_bit   1.39     0.97   0.95
+                    per_sd    4.67     3.58   4.07
+GD      T*          per_bit   3.33     3.08   2.16
+                    per_sd    8.65     7.02   8.11
+        T=1         per_bit   2.54     1.91   1.93
+                    per_sd    8.55     7.02   8.21
+TFT     T*          per_bit   6.24    10.80   3.01
+                    per_sd   19.24    23.64  15.85
+        T=1         per_bit   5.67     5.54   3.74
+                    per_sd   19.10    20.44  15.96
+
+######## gpt2  temps=[0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0]
+
+== T* (best-fitting temperature; >1 = LM over-confident) ==
+ corpus        subset measure  T_star  T_lo  T_hi  p_T_gt_1  dLL_T1  dLL_Tstar  gain_pct  n_words  n_items
+  emtec           all     FFD    1.25 0.994 1.500     0.841   0.004      0.004     3.642    39986       42
+meco_en           all     FFD    4.00 0.750 4.000     0.934   0.004      0.005    46.595     1820       12
+  provo           all     FFD    1.25 0.750 1.500     0.627   0.013      0.014     1.310     2274       55
+  emtec   beam_search     FFD    1.00 0.750 4.000     0.281   0.003      0.003     0.000     5672       42
+  emtec greedy_search     FFD    1.50 0.750 2.500     0.760   0.004      0.004     5.253     8509       42
+  emtec      sampling     FFD    2.50 0.750 4.000     0.837   0.002      0.002     9.920     8473       42
+  emtec          topk     FFD    1.25 0.750 2.000     0.658   0.003      0.003     2.047     8693       42
+  emtec          topp     FFD    1.50 1.000 2.000     0.960   0.005      0.006    10.467     8639       42
+  emtec           all      GD    1.50 1.250 3.000     0.976   0.006      0.007     6.908    39986       42
+meco_en           all      GD    3.00 1.250 4.000     0.993   0.008      0.012    44.565     1820       12
+  provo           all      GD    1.00 0.750 2.000     0.373   0.024      0.024     0.000     2274       55
+  emtec   beam_search      GD    1.00 0.750 2.000     0.411   0.006      0.006     0.000     5672       42
+  emtec greedy_search      GD    2.50 0.750 4.000     0.885   0.006      0.006     9.096     8509       42
+  emtec      sampling      GD    2.00 1.000 4.000     0.955   0.004      0.005    16.118     8473       42
+  emtec          topk      GD    1.50 0.750 2.500     0.885   0.006      0.007     6.273     8693       42
+  emtec          topp      GD    1.50 1.250 4.000     0.991   0.008      0.009    11.461     8639       42
+  emtec           all     TFT    1.25 0.750 3.000     0.768   0.017      0.017     1.735    41462       42
+meco_en           all     TFT    2.50 1.250 4.000     0.998   0.032      0.038    21.810     1831       12
+  provo           all     TFT    0.75 0.750 1.006     0.025   0.059      0.060     1.664     2274       55
+  emtec   beam_search     TFT    1.00 0.750 2.500     0.457   0.016      0.016     0.000     5878       42
+  emtec greedy_search     TFT    2.50 0.750 3.000     0.729   0.018      0.019     4.672     8820       42
+  emtec      sampling     TFT    1.25 0.750 2.500     0.566   0.018      0.018     0.493     8775       42
+  emtec          topk     TFT    1.25 0.750 3.000     0.641   0.012      0.013     1.022     9020       42
+  emtec          topp     TFT    1.50 1.000 3.000     0.969   0.019      0.020     6.863     8969       42
+
+== contrasts on log T* (>0 = first group needs more flattening) ==
+measure                                   contrast  log_ratio     lo    hi  p_boot
+    FFD                            emtec - meco_en     -0.981 -1.386 0.511   0.370
+    FFD                              emtec - provo      0.182 -0.405 0.693   0.988
+    FFD emtec: deterministic - stochastic decoding     -0.266 -0.765 0.423   0.382
+     GD                            emtec - meco_en     -0.511 -1.163 0.471   0.436
+     GD                              emtec - provo      0.405 -0.470 1.204   0.436
+     GD emtec: deterministic - stochastic decoding     -0.235 -0.875 0.364   0.412
+    TFT                            emtec - meco_en     -0.470 -1.386 0.511   0.416
+    TFT                              emtec - provo      0.511  0.000 1.204   0.202
+    TFT emtec: deterministic - stochastic decoding     -0.029 -0.634 0.582   0.910
+
+== surprisal slopes: ms per bit vs ms per within-corpus SD, at T=1 and T* ==
+corpus                       emtec  meco_en  provo
+measure temperature unit                          
+FFD     T*          per_bit   1.56     0.64   1.10
+                    per_sd    5.10     1.48   4.20
+        T=1         per_bit   1.38     1.06   0.95
+                    per_sd    5.00     4.17   4.15
+GD      T*          per_bit   3.00     3.33   1.96
+                    per_sd    9.18     7.66   8.58
+        T=1         per_bit   2.47     2.23   1.96
+                    per_sd    8.92     8.74   8.58
+TFT     T*          per_bit   6.01     9.44   3.19
+                    per_sd   19.66    22.83  17.31
+        T=1         per_bit   5.38     5.62   4.00
+                    per_sd   19.45    22.04  17.47
+
+== inverse scaling before vs after calibration (rel. dLL change per 10x params), and how T* grows with size ==
+corpus                     emtec  meco_en  provo
+measure at                                      
+FFD     dLL_T1            -0.324   -0.757 -0.077
+        dLL_Tstar         -0.277   -0.131 -0.018
+        log_Tstar_vs_size  0.289    0.069  0.188
+GD      dLL_T1            -0.263   -0.620 -0.120
+        dLL_Tstar         -0.160    0.046 -0.071
+        log_Tstar_vs_size  0.583    0.277  0.309
+TFT     dLL_T1            -0.055   -0.169 -0.021
+        dLL_Tstar         -0.038    0.067 -0.038
+        log_Tstar_vs_size  0.560    0.282  0.210

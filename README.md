@@ -40,3 +40,17 @@ Tests: `python tests/test_analysis.py` checks that the estimators recover plante
 - **Generator vs evaluator surprisal (EMTeC only).** Add the generator's own transition log-probs (from EMTeC's transition scores) as a second predictor. The decoding-truncated distribution *q* vs the model's *p* (top-k/top-p renormalization, temperature 0.8) gives "decoding-aware surprisal" log q − log p as a distortion term.
 - **LM scale curve.** Run the pythia suite (70m to 12b where feasible) on all corpora. Does the inverse-scaling effect (Oh & Schuler 2023) look different on machine text, which was produced by models of similar scale?
 - **Cross-lingual check.** PoTeC (de) and CopCo (da) with a multilingual LM, as a generalization appendix rather than the main contrast. The config has stubs.
+
+## Follow-ups (`extras.py`, run after `analyze`)
+
+```
+python extras.py --lm gpt2        # --only readers|divergence|words, --knot 7, --n-rep 50
+```
+
+| output (out/results/<lm>/extras/) | question |
+|---|---|
+| `reader_matched_dll.csv` | ΔLL and slopes with every text subsampled to the same number of readers (default 7, 50 repeats). Raw ΔLL is not comparable across corpora with different reader counts. |
+| `divergence_tests.csv`, `piecewise_slopes.csv`, `spline_curves.png` | Do the RT ~ surprisal curves differ by source? Spline × source Wald test (primary, no knot choice) and piecewise slopes below/above `--knot` (descriptive). Word-level OLS with text-clustered SEs. |
+| `top_surprisal_words.csv`, `high_surprisal_profile.csv` | What the most surprising words are, in context, plus a profile of all words above the knot by corpus and decoding strategy. |
+
+The knot (7 bits) was picked by eye from the same data, so report the spline test as the confirmatory one. `r/divergence_gam.R` is the trial-level version (difference-smooth GAM with subject and text random effects) and is what the paper should report.

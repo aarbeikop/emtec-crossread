@@ -48,8 +48,14 @@ def cmd_harmonize(cfg):
     loaders.texts_from_words(words).to_parquet(OUT / "texts.parquet")
 
 
-def cmd_surprisal(cfg, lm=None):
+def cmd_surprisal(cfg, lm=None, temps=(1.0,), only=None, device=None, dtype="float32"):
     texts = pd.read_parquet(OUT / "texts.parquet")
+    if only:  # score just these corpora and merge into the existing file
+        missing = set(only) - set(texts.corpus)
+        if missing:
+            sys.exit(f"--only {' '.join(only)}: {', '.join(sorted(missing))} not in out/texts.parquet. "
+                     "Add it to `use:` in the config and rerun `python run.py harmonize` first.")
+        texts = texts[texts.corpus.isin(only)]
     (OUT / "surprisal").mkdir(parents=True, exist_ok=True)
     for name in ([lm] if lm else cfg["lms"]):
         label = Path(name).name if Path(name).exists() else name.replace("/", "__")
@@ -58,10 +64,20 @@ def cmd_surprisal(cfg, lm=None):
                      for lang, t in texts.groupby("language")]
             s = pd.concat(parts, ignore_index=True)
         else:
-            scorer = surprisal.LMScorer(name, device=cfg.get("device", "cpu"))
+            scorer = surprisal.LMScorer(name, device=device or cfg.get("device", "cpu"), temps=temps, dtype=dtype)
             print(f"[{name}] bow-correction={scorer.bow_correction} ctx={scorer.max_ctx}")
             s = surprisal.score_texts(texts, scorer, name)
-        s.to_parquet(OUT / "surprisal" / f"{label}.parquet")
+        bad = s["surprisal"].isna().mean()
+        if bad > 0.01:
+            sys.exit(f"[{name}] {bad:.0%} of words got NaN surprisal (overflow?). Nothing saved. "
+                     "Small models in float16 do this: rerun with --dtype float32.")
+        f = OUT / "surprisal" / f"{label}.parquet"
+        if only and f.exists():
+            old = pd.read_parquet(f)
+            if set(old.columns) != set(s.columns):
+                sys.exit(f"[{name}] existing file has different columns (temperatures?); rerun without --only")
+            s = pd.concat([old[~old.corpus.isin(only)], s], ignore_index=True)
+        s.to_parquet(f)
         print(f"[{name}] scored {len(s):,} words, mean surprisal {s.surprisal.mean():.2f} bits")
 
 
@@ -138,6 +154,12 @@ if __name__ == "__main__":
     p.add_argument("corpus", nargs="?")
     p.add_argument("--config", default="configs/corpora.yaml")
     p.add_argument("--lm", default=None, help="one HF id / local path, or 'unigram' (no weights)")
+    p.add_argument("--only", nargs="+", default=None,
+                   help="score only these corpora and merge them into existing surprisal files")
+    p.add_argument("--temps", nargs="+", type=float, default=[1.0],
+                   help="extra surprisal columns under softmax(logits/T), e.g. 0.75 1.5 2 3 4")
+    p.add_argument("--device", default=None, help="cpu / mps / cuda (overrides the config)")
+    p.add_argument("--dtype", default="float32", help="weights dtype, e.g. float16 for big models on mps")
     args = p.parse_args()
     cfg = cfg_load(args.config)
     if args.stage == "columns":
@@ -145,6 +167,6 @@ if __name__ == "__main__":
     if args.stage in {"harmonize", "all"}:
         cmd_harmonize(cfg)
     if args.stage in {"surprisal", "all"}:
-        cmd_surprisal(cfg, args.lm)
+        cmd_surprisal(cfg, args.lm, args.temps, args.only, args.device, args.dtype)
     if args.stage in {"analyze", "all"}:
         cmd_analyze(cfg)

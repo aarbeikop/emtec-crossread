@@ -60,6 +60,15 @@ def main():
         assert np.isclose(c.surprisal.sum(), expected, atol=1e-3)  # check 3
         assert not np.allclose(c.surprisal, r.surprisal)
 
+        # check 5: temperature columns match a manual softmax(logits / T); T=1 unchanged
+        rt = LMScorer(tmp, bow_correction=False, temps=[2.0]).score(WORDS)
+        assert np.allclose(rt.surprisal, r.surprisal, atol=1e-4)
+        with torch.no_grad():
+            lp2 = torch.log_softmax(raw.model(seq).logits[0] / 2.0, -1)
+        tok2 = -lp2[torch.arange(len(ids)), seq[0, 1:]].numpy() / math.log(2)
+        assert np.isclose(rt["surprisal_T2"].sum(), tok2.sum(), atol=1e-3)
+        assert not np.allclose(rt["surprisal_T2"], rt.surprisal)
+
         small = LMScorer(tmp, max_ctx=8).score(WORDS * 5)  # check 4
         assert small.surprisal.notna().all() and len(small) == len(WORDS) * 5
 

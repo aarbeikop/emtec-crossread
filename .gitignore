@@ -1,0 +1,12 @@
+data/.venv/
+.venv-pm/
+data/
+out/
+logs/
+__pycache__/
+*.pyc
+.DS_Store
+Rplots.pdf
+*.txt.bak
+
+.venv/

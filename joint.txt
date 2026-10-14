@@ -1,0 +1,160 @@
+  joint: scored EleutherAI__pythia-1.4b
+  joint: scored EleutherAI__pythia-160m
+  joint: scored EleutherAI__pythia-1b
+  joint: scored EleutherAI__pythia-410m
+  joint: scored EleutherAI__pythia-70m
+  joint: scored gpt2
+  joint: scored gpt2-large
+  joint: scored gpt2-medium
+
+== T* per LM (point) ==
+corpus                            emtec  meco_en  provo
+measure  lm                                            
+FFD      EleutherAI__pythia-1.4b   1.50     8.00   1.50
+         EleutherAI__pythia-160m   1.25     3.00   1.50
+         EleutherAI__pythia-1b     1.50     8.00   1.50
+         EleutherAI__pythia-410m   1.25     4.00   1.25
+         EleutherAI__pythia-70m    1.00     4.00   1.00
+         gpt2                      1.25     4.00   1.25
+         gpt2-large                1.50     8.00   1.25
+         gpt2-medium               1.50     5.00   1.25
+GD       EleutherAI__pythia-1.4b   2.00     3.00   2.00
+         EleutherAI__pythia-160m   1.50     2.50   1.50
+         EleutherAI__pythia-1b     2.00     3.00   1.25
+         EleutherAI__pythia-410m   1.50     3.00   1.50
+         EleutherAI__pythia-70m    1.00     3.00   1.00
+         gpt2                      1.50     2.50   1.00
+         gpt2-large                1.50     3.00   1.25
+         gpt2-medium               1.50     3.00   1.25
+TFT      EleutherAI__pythia-1.4b   1.25     2.50   1.25
+         EleutherAI__pythia-160m   1.25     2.50   1.00
+         EleutherAI__pythia-1b     1.25     2.50   1.00
+         EleutherAI__pythia-410m   1.25     2.50   1.00
+         EleutherAI__pythia-70m    1.00     2.50   0.75
+         gpt2                      1.25     2.50   0.75
+         gpt2-large                1.25     3.00   1.00
+         gpt2-medium               1.25     2.50   0.75
+reg_rate EleutherAI__pythia-1.4b   1.00     0.75   8.00
+         EleutherAI__pythia-160m   0.75     0.75   8.00
+         EleutherAI__pythia-1b     0.75     0.75   8.00
+         EleutherAI__pythia-410m   0.75     0.75   0.75
+         EleutherAI__pythia-70m    0.75     0.75   8.00
+         gpt2                      0.75     0.75   0.75
+         gpt2-large                1.00     0.75   8.00
+         gpt2-medium               1.00     1.00   8.00
+reread   EleutherAI__pythia-1.4b   1.00     2.00   0.75
+         EleutherAI__pythia-160m   1.25     2.50   0.75
+         EleutherAI__pythia-1b     1.00     2.00   0.75
+         EleutherAI__pythia-410m   1.00     1.50   0.75
+         EleutherAI__pythia-70m    1.00     1.25   0.75
+         gpt2                      1.00     3.00   0.75
+         gpt2-large                1.00     3.00   0.75
+         gpt2-medium               1.00     1.25   0.75
+
+== per corpus: rel_T1 = inverse scaling at T=1, rel_Tstar = left after calibration, calib = removed by calibration, logT_slope = T* growth per 10x params ==
+ corpus  measure       stat  estimate     lo     hi  p_boot
+  emtec      FFD     rel_T1    -0.328 -0.576 -0.180   0.000
+  emtec      FFD  rel_Tstar    -0.276 -0.498 -0.150   0.000
+  emtec      FFD      calib     0.051 -0.015  0.153   0.198
+  emtec      FFD logT_slope     0.282  0.073  0.585   0.018
+  emtec       GD     rel_T1    -0.267 -0.458 -0.129   0.000
+  emtec       GD  rel_Tstar    -0.194 -0.339 -0.081   0.002
+  emtec       GD      calib     0.073  0.007  0.204   0.028
+  emtec       GD logT_slope     0.391  0.087  0.691   0.000
+  emtec      TFT     rel_T1    -0.056 -0.188  0.046   0.284
+  emtec      TFT  rel_Tstar    -0.048 -0.161  0.055   0.416
+  emtec      TFT      calib     0.008 -0.013  0.089   0.516
+  emtec      TFT logT_slope     0.107 -0.110  0.713   0.218
+  emtec reg_rate     rel_T1    -0.314 -0.847 -0.059   0.016
+  emtec reg_rate  rel_Tstar    -0.389 -0.643  0.078   0.138
+  emtec reg_rate      calib    -0.075 -0.104  0.747   0.824
+  emtec reg_rate logT_slope     0.193 -0.000  2.210   0.144
+  emtec   reread     rel_T1     0.069 -0.044  0.201   0.206
+  emtec   reread  rel_Tstar     0.068 -0.037  0.195   0.188
+  emtec   reread      calib    -0.002 -0.026  0.039   1.000
+  emtec   reread logT_slope    -0.053 -0.559  0.446   0.884
+meco_en      FFD     rel_T1    -0.628 -2.969  1.141   0.120
+meco_en      FFD  rel_Tstar    -0.135 -0.750  0.015   0.100
+meco_en      FFD      calib     0.493 -1.236  2.876   0.148
+meco_en      FFD logT_slope     0.724 -0.073  1.435   0.440
+meco_en       GD     rel_T1    -0.289 -1.408  0.601   0.202
+meco_en       GD  rel_Tstar    -0.066 -0.399  0.149   0.638
+meco_en       GD      calib     0.224 -0.619  1.187   0.174
+meco_en       GD logT_slope     0.094 -0.332  0.758   0.396
+meco_en      TFT     rel_T1     0.024 -0.556  0.424   0.880
+meco_en      TFT  rel_Tstar     0.115 -0.152  0.388   0.424
+meco_en      TFT      calib     0.091 -0.072  0.447   0.218
+meco_en      TFT logT_slope     0.046 -0.138  0.371   0.438
+meco_en reg_rate     rel_T1     0.327 -0.305  1.617   0.180
+meco_en reg_rate  rel_Tstar     0.257 -0.165  0.499   0.388
+meco_en reg_rate      calib    -0.070 -1.627  0.091   0.154
+meco_en reg_rate logT_slope     0.008 -1.699  0.694   0.812
+meco_en   reread     rel_T1     0.239 -0.375  0.702   0.240
+meco_en   reread  rel_Tstar     0.265 -0.034  0.547   0.068
+meco_en   reread      calib     0.026 -0.249  0.458   0.704
+meco_en   reread logT_slope     0.139 -0.429  0.473   0.946
+  provo      FFD     rel_T1    -0.071 -0.348  0.187   0.580
+  provo      FFD  rel_Tstar    -0.016 -0.281  0.224   0.874
+  provo      FFD      calib     0.055 -0.011  0.154   0.132
+  provo      FFD logT_slope     0.188 -0.035  0.368   0.108
+  provo       GD     rel_T1    -0.121 -0.358  0.101   0.288
+  provo       GD  rel_Tstar    -0.073 -0.283  0.162   0.484
+  provo       GD      calib     0.048 -0.018  0.145   0.150
+  provo       GD logT_slope     0.315  0.034  0.614   0.028
+  provo      TFT     rel_T1    -0.025 -0.173  0.109   0.742
+  provo      TFT  rel_Tstar    -0.042 -0.183  0.101   0.598
+  provo      TFT      calib    -0.017 -0.054  0.025   0.430
+  provo      TFT logT_slope     0.298  0.000  0.429   0.034
+  provo reg_rate     rel_T1    -0.077 -1.880  1.755   0.834
+  provo reg_rate  rel_Tstar    -0.109 -0.398  0.049   0.114
+  provo reg_rate      calib    -0.032 -1.789  1.807   0.688
+  provo reg_rate logT_slope     0.579 -0.774  1.681   0.944
+  provo   reread     rel_T1     0.021 -0.142  0.159   0.790
+  provo   reread  rel_Tstar    -0.006 -0.168  0.128   0.940
+  provo   reread      calib    -0.027 -0.070  0.009   0.126
+  provo   reread logT_slope     0.000  0.000  0.207   0.024
+
+== EMTeC minus human corpus (rel_Tstar < 0: more inverse scaling survives calibration on LLM text) ==
+ measure        contrast       stat   diff     lo    hi  p_boot
+     FFD emtec - meco_en     rel_T1  0.300 -1.437 2.663   0.376
+     FFD emtec - meco_en  rel_Tstar -0.141 -0.401 0.478   0.728
+     FFD emtec - meco_en      calib -0.441 -2.776 1.315   0.238
+     FFD emtec - meco_en logT_slope -0.441 -1.198 0.481   0.766
+     FFD   emtec - provo     rel_T1 -0.257 -0.592 0.063   0.108
+     FFD   emtec - provo  rel_Tstar -0.260 -0.552 0.029   0.086
+     FFD   emtec - provo      calib -0.003 -0.122 0.131   0.976
+     FFD   emtec - provo logT_slope  0.094 -0.185 0.475   0.448
+      GD emtec - meco_en     rel_T1  0.022 -0.878 1.091   0.970
+      GD emtec - meco_en  rel_Tstar -0.128 -0.379 0.214   0.510
+      GD emtec - meco_en      calib -0.151 -1.091 0.709   0.454
+      GD emtec - meco_en logT_slope  0.296 -0.474 0.763   0.564
+      GD   emtec - provo     rel_T1 -0.146 -0.437 0.114   0.240
+      GD   emtec - provo  rel_Tstar -0.122 -0.376 0.129   0.320
+      GD   emtec - provo      calib  0.025 -0.085 0.179   0.604
+      GD   emtec - provo logT_slope  0.075 -0.399 0.436   0.974
+     TFT emtec - meco_en     rel_T1 -0.080 -0.503 0.508   0.680
+     TFT emtec - meco_en  rel_Tstar -0.163 -0.438 0.136   0.320
+     TFT emtec - meco_en      calib -0.084 -0.441 0.109   0.398
+     TFT emtec - meco_en logT_slope  0.061 -0.334 0.622   0.640
+     TFT   emtec - provo     rel_T1 -0.031 -0.207 0.141   0.708
+     TFT   emtec - provo  rel_Tstar -0.007 -0.172 0.163   0.984
+     TFT   emtec - provo      calib  0.024 -0.021 0.109   0.272
+     TFT   emtec - provo logT_slope -0.191 -0.367 0.570   0.986
+reg_rate emtec - meco_en     rel_T1 -0.642 -2.219 0.013   0.054
+reg_rate emtec - meco_en  rel_Tstar -0.646 -0.903 0.050   0.092
+reg_rate emtec - meco_en      calib -0.005 -0.123 1.889   0.488
+reg_rate emtec - meco_en logT_slope  0.185 -0.443 2.701   0.368
+reg_rate   emtec - provo     rel_T1 -0.237 -2.420 1.627   0.456
+reg_rate   emtec - provo  rel_Tstar -0.280 -0.579 0.227   0.394
+reg_rate   emtec - provo      calib -0.044 -1.751 2.449   0.692
+reg_rate   emtec - provo logT_slope -0.387 -1.398 2.279   0.434
+  reread emtec - meco_en     rel_T1 -0.170 -0.653 0.483   0.414
+  reread emtec - meco_en  rel_Tstar -0.197 -0.503 0.139   0.220
+  reread emtec - meco_en      calib -0.027 -0.468 0.246   0.740
+  reread emtec - meco_en logT_slope -0.192 -0.755 0.547   0.976
+  reread   emtec - provo     rel_T1  0.048 -0.124 0.243   0.622
+  reread   emtec - provo  rel_Tstar  0.074 -0.083 0.264   0.390
+  reread   emtec - provo      calib  0.026 -0.017 0.085   0.192
+  reread   emtec - provo logT_slope -0.053 -0.559 0.437   1.000
+
+wrote out/calibration/joint/

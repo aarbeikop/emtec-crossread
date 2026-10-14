@@ -1,0 +1,301 @@
+/Users/isabellecretton/Desktop/WARFARE/emtec-crossread/src/crossread/calibration.py:460: RuntimeWarning: invalid value encountered in divide
+  r1 = scaling._fit_slope(x, d1 / d1.mean(), fam)
+/Users/isabellecretton/Desktop/WARFARE/emtec-crossread/src/crossread/calibration.py:461: RuntimeWarning: invalid value encountered in divide
+  rs = scaling._fit_slope(x, ds / ds.mean(), fam)
+  grouped: scored EleutherAI__pythia-1.4b
+  grouped: scored EleutherAI__pythia-160m
+  grouped: scored EleutherAI__pythia-1b
+  grouped: scored EleutherAI__pythia-2.8b
+  grouped: scored EleutherAI__pythia-410m
+  grouped: scored EleutherAI__pythia-70m
+  grouped: scored gpt2
+  grouped: scored gpt2-large
+  grouped: scored gpt2-medium
+
+== per group (rel_T1 = inverse scaling at T=1, rel_Tstar = after calibration; < 0 = bigger LMs fit worse) ==
+           group  n_texts  mean_surprisal  measure      stat  estimate      lo     hi  p_boot
+  emtec/typ-high      196           3.927      FFD    rel_T1    -0.193  -0.905  0.492   0.388
+  emtec/typ-high      196           3.927      FFD rel_Tstar    -0.178  -0.540  0.247   0.320
+  emtec/typ-high      196           3.927       GD    rel_T1    -0.083  -0.385  0.228   0.548
+  emtec/typ-high      196           3.927       GD rel_Tstar    -0.039  -0.219  0.229   0.720
+  emtec/typ-high      196           3.927      TFT    rel_T1     0.095  -0.382  0.396   0.548
+  emtec/typ-high      196           3.927      TFT rel_Tstar     0.073  -0.271  0.358   0.582
+  emtec/typ-high      196           3.927 reg_rate    rel_T1    -0.161  -3.900  3.282   0.678
+  emtec/typ-high      196           3.927 reg_rate rel_Tstar     0.236  -0.376  0.622   0.368
+  emtec/typ-high      196           3.927   reread    rel_T1     0.280  -0.476  1.015   0.238
+  emtec/typ-high      196           3.927   reread rel_Tstar     0.276  -0.303  0.785   0.192
+   emtec/typ-low      196           6.283      FFD    rel_T1    -0.394  -0.670 -0.203   0.004
+   emtec/typ-low      196           6.283      FFD rel_Tstar    -0.257  -0.558 -0.103   0.006
+   emtec/typ-low      196           6.283       GD    rel_T1    -0.401  -0.735 -0.256   0.000
+   emtec/typ-low      196           6.283       GD rel_Tstar    -0.282  -0.567 -0.164   0.000
+   emtec/typ-low      196           6.283      TFT    rel_T1    -0.190  -0.334 -0.101   0.000
+   emtec/typ-low      196           6.283      TFT rel_Tstar    -0.110  -0.262 -0.031   0.008
+   emtec/typ-low      196           6.283 reg_rate    rel_T1    -0.252  -2.213  0.155   0.140
+   emtec/typ-low      196           6.283 reg_rate rel_Tstar    -0.289  -0.772  0.059   0.188
+   emtec/typ-low      196           6.283   reread    rel_T1    -0.071  -0.198  0.022   0.102
+   emtec/typ-low      196           6.283   reread rel_Tstar    -0.019  -0.141  0.064   0.758
+   emtec/typ-mid      196           4.676      FFD    rel_T1    -0.540  -1.189 -0.230   0.002
+   emtec/typ-mid      196           4.676      FFD rel_Tstar    -0.490  -0.950 -0.139   0.002
+   emtec/typ-mid      196           4.676       GD    rel_T1    -0.460  -1.114 -0.148   0.008
+   emtec/typ-mid      196           4.676       GD rel_Tstar    -0.184  -0.661  0.026   0.078
+   emtec/typ-mid      196           4.676      TFT    rel_T1    -0.078  -0.398  0.180   0.490
+   emtec/typ-mid      196           4.676      TFT rel_Tstar    -0.000  -0.243  0.172   0.882
+   emtec/typ-mid      196           4.676 reg_rate    rel_T1    -1.372  -6.416  4.402   0.518
+   emtec/typ-mid      196           4.676 reg_rate rel_Tstar     0.030  -1.051  1.365   0.830
+   emtec/typ-mid      196           4.676   reread    rel_T1     0.124  -0.108  0.423   0.236
+   emtec/typ-mid      196           4.676   reread rel_Tstar     0.108  -0.033  0.267   0.136
+meco_en/typ-high        4           4.628      FFD    rel_T1     1.921     NaN    NaN   0.452
+meco_en/typ-high        4           4.628      FFD rel_Tstar     0.040     NaN    NaN   0.778
+meco_en/typ-high        4           4.628       GD    rel_T1    -0.199     NaN    NaN   0.350
+meco_en/typ-high        4           4.628       GD rel_Tstar    -0.018     NaN    NaN   0.768
+meco_en/typ-high        4           4.628      TFT    rel_T1    -0.999     NaN    NaN   0.786
+meco_en/typ-high        4           4.628      TFT rel_Tstar     0.277     NaN    NaN   0.108
+meco_en/typ-high        4           4.628 reg_rate    rel_T1     1.525     NaN    NaN   0.554
+meco_en/typ-high        4           4.628 reg_rate rel_Tstar     0.085     NaN    NaN   0.370
+meco_en/typ-high        4           4.628   reread    rel_T1     1.693     NaN    NaN   0.720
+meco_en/typ-high        4           4.628   reread rel_Tstar     0.823     NaN    NaN   0.530
+ meco_en/typ-low        4           5.534      FFD    rel_T1    -2.239     NaN    NaN   0.064
+ meco_en/typ-low        4           5.534      FFD rel_Tstar    -0.109     NaN    NaN   0.380
+ meco_en/typ-low        4           5.534       GD    rel_T1    -0.722     NaN    NaN   0.232
+ meco_en/typ-low        4           5.534       GD rel_Tstar    -0.165     NaN    NaN   0.704
+ meco_en/typ-low        4           5.534      TFT    rel_T1    -0.168     NaN    NaN   0.972
+ meco_en/typ-low        4           5.534      TFT rel_Tstar     0.069     NaN    NaN   0.788
+ meco_en/typ-low        4           5.534 reg_rate    rel_T1     0.657     NaN    NaN   0.838
+ meco_en/typ-low        4           5.534 reg_rate rel_Tstar     0.089     NaN    NaN   0.738
+ meco_en/typ-low        4           5.534   reread    rel_T1    -0.373     NaN    NaN   0.550
+ meco_en/typ-low        4           5.534   reread rel_Tstar    -0.011     NaN    NaN   0.756
+ meco_en/typ-mid        4           5.206      FFD    rel_T1    -1.833     NaN    NaN   0.622
+ meco_en/typ-mid        4           5.206      FFD rel_Tstar    -0.945     NaN    NaN   0.406
+ meco_en/typ-mid        4           5.206       GD    rel_T1    -0.512     NaN    NaN   0.348
+ meco_en/typ-mid        4           5.206       GD rel_Tstar    -0.077     NaN    NaN   0.000
+ meco_en/typ-mid        4           5.206      TFT    rel_T1    -0.338     NaN    NaN   0.126
+ meco_en/typ-mid        4           5.206      TFT rel_Tstar    -0.110     NaN    NaN   0.088
+ meco_en/typ-mid        4           5.206 reg_rate    rel_T1     0.702     NaN    NaN   0.668
+ meco_en/typ-mid        4           5.206 reg_rate rel_Tstar     0.680     NaN    NaN   0.822
+ meco_en/typ-mid        4           5.206   reread    rel_T1    -0.102     NaN    NaN   0.520
+ meco_en/typ-mid        4           5.206   reread rel_Tstar    -0.072     NaN    NaN   0.744
+onestop/typ-high      108           5.623      FFD    rel_T1    -0.150  -0.430  0.047   0.140
+onestop/typ-high      108           5.623      FFD rel_Tstar    -0.165  -0.385  0.022   0.114
+onestop/typ-high      108           5.623       GD    rel_T1    -0.050  -0.205  0.093   0.504
+onestop/typ-high      108           5.623       GD rel_Tstar    -0.037  -0.168  0.098   0.582
+onestop/typ-high      108           5.623      TFT    rel_T1     0.144   0.014  0.265   0.026
+onestop/typ-high      108           5.623      TFT rel_Tstar     0.145   0.020  0.258   0.020
+onestop/typ-high      108           5.623 reg_rate    rel_T1    -0.169  -8.552  5.667   0.862
+onestop/typ-high      108           5.623 reg_rate rel_Tstar     0.145  -0.921  0.903   0.664
+onestop/typ-high      108           5.623   reread    rel_T1     0.199   0.050  0.350   0.006
+onestop/typ-high      108           5.623   reread rel_Tstar     0.199   0.049  0.343   0.006
+ onestop/typ-low      108           7.418      FFD    rel_T1    -0.008  -0.212  0.160   0.912
+ onestop/typ-low      108           7.418      FFD rel_Tstar     0.019  -0.175  0.175   0.834
+ onestop/typ-low      108           7.418       GD    rel_T1     0.120  -0.007  0.246   0.066
+ onestop/typ-low      108           7.418       GD rel_Tstar     0.138   0.018  0.254   0.018
+ onestop/typ-low      108           7.418      TFT    rel_T1     0.159   0.079  0.259   0.000
+ onestop/typ-low      108           7.418      TFT rel_Tstar     0.164   0.082  0.247   0.000
+ onestop/typ-low      108           7.418 reg_rate    rel_T1     0.528 -12.367  9.422   0.650
+ onestop/typ-low      108           7.418 reg_rate rel_Tstar     0.087  -0.198  0.215   0.248
+ onestop/typ-low      108           7.418   reread    rel_T1     0.166   0.072  0.283   0.000
+ onestop/typ-low      108           7.418   reread rel_Tstar     0.169   0.078  0.275   0.000
+ onestop/typ-mid      108           6.448      FFD    rel_T1    -0.089  -0.288  0.075   0.286
+ onestop/typ-mid      108           6.448      FFD rel_Tstar    -0.067  -0.240  0.094   0.386
+ onestop/typ-mid      108           6.448       GD    rel_T1    -0.070  -0.206  0.049   0.236
+ onestop/typ-mid      108           6.448       GD rel_Tstar    -0.039  -0.144  0.061   0.498
+ onestop/typ-mid      108           6.448      TFT    rel_T1     0.096  -0.071  0.245   0.238
+ onestop/typ-mid      108           6.448      TFT rel_Tstar     0.102  -0.058  0.238   0.202
+ onestop/typ-mid      108           6.448 reg_rate    rel_T1    -1.121  -9.614  7.834   0.426
+ onestop/typ-mid      108           6.448 reg_rate rel_Tstar     0.134  -0.588  0.297   0.454
+ onestop/typ-mid      108           6.448   reread    rel_T1     0.149  -0.034  0.328   0.142
+ onestop/typ-mid      108           6.448   reread rel_Tstar     0.153  -0.028  0.322   0.106
+  provo/typ-high       18           5.309      FFD    rel_T1    -0.193  -1.208  1.604   0.542
+  provo/typ-high       18           5.309      FFD rel_Tstar    -0.128  -0.797  1.232   0.672
+  provo/typ-high       18           5.309       GD    rel_T1    -0.288  -1.314  0.435   0.348
+  provo/typ-high       18           5.309       GD rel_Tstar    -0.206  -0.845  0.483   0.422
+  provo/typ-high       18           5.309      TFT    rel_T1    -0.181  -0.551  0.154   0.200
+  provo/typ-high       18           5.309      TFT rel_Tstar    -0.205  -0.552  0.148   0.172
+  provo/typ-high       18           5.309 reg_rate    rel_T1    -0.202  -3.838  3.230   0.640
+  provo/typ-high       18           5.309 reg_rate rel_Tstar    -0.043  -1.083  0.168   0.456
+  provo/typ-high       18           5.309   reread    rel_T1    -0.202  -0.950  0.267   0.280
+  provo/typ-high       18           5.309   reread rel_Tstar    -0.211  -0.832  0.155   0.224
+   provo/typ-low       19           7.399      FFD    rel_T1    -0.143  -1.506  0.948   0.550
+   provo/typ-low       19           7.399      FFD rel_Tstar    -0.098  -1.452  0.639   0.698
+   provo/typ-low       19           7.399       GD    rel_T1    -0.324  -1.076  0.006   0.056
+   provo/typ-low       19           7.399       GD rel_Tstar    -0.248  -0.659  0.057   0.142
+   provo/typ-low       19           7.399      TFT    rel_T1     0.003  -0.143  0.191   0.974
+   provo/typ-low       19           7.399      TFT rel_Tstar    -0.028  -0.147  0.126   0.636
+   provo/typ-low       19           7.399 reg_rate    rel_T1     0.819  -3.159  3.898   0.510
+   provo/typ-low       19           7.399 reg_rate rel_Tstar    -0.133  -0.544  0.272   0.410
+   provo/typ-low       19           7.399   reread    rel_T1     0.088  -0.070  0.333   0.256
+   provo/typ-low       19           7.399   reread rel_Tstar     0.038  -0.103  0.241   0.588
+   provo/typ-mid       18           6.482      FFD    rel_T1     0.077  -1.777  1.106   0.734
+   provo/typ-mid       18           6.482      FFD rel_Tstar     0.140  -1.065  0.689   0.634
+   provo/typ-mid       18           6.482       GD    rel_T1    -0.018  -0.736  1.021   0.900
+   provo/typ-mid       18           6.482       GD rel_Tstar     0.102  -0.385  0.751   0.612
+   provo/typ-mid       18           6.482      TFT    rel_T1     0.000  -1.024  1.048   0.980
+   provo/typ-mid       18           6.482      TFT rel_Tstar     0.043  -0.550  0.916   0.750
+   provo/typ-mid       18           6.482 reg_rate    rel_T1    -1.502  -6.109  8.175   0.708
+   provo/typ-mid       18           6.482 reg_rate rel_Tstar    -0.819  -3.561  4.436   0.462
+   provo/typ-mid       18           6.482   reread    rel_T1     0.125  -1.337  1.654   0.620
+   provo/typ-mid       18           6.482   reread rel_Tstar     0.127  -0.573  1.688   0.528
+
+== contrasts (< 0 = more inverse scaling in the first group) ==
+ measure                           contrast  paired      stat   diff      lo     hi  p_boot
+     FFD       emtec: high - low typicality    True    rel_T1  0.202  -0.496  0.945   0.418
+     FFD       emtec: high - low typicality    True rel_Tstar  0.079  -0.314  0.600   0.540
+     FFD     meco_en: high - low typicality    True    rel_T1  4.160     NaN    NaN   0.174
+     FFD     meco_en: high - low typicality    True rel_Tstar  0.149     NaN    NaN   0.538
+     FFD     onestop: high - low typicality    True    rel_T1 -0.142  -0.467  0.139   0.298
+     FFD     onestop: high - low typicality    True rel_Tstar -0.184  -0.465  0.091   0.190
+     FFD       provo: high - low typicality    True    rel_T1 -0.050  -1.623  2.521   0.986
+     FFD       provo: high - low typicality    True rel_Tstar -0.030  -1.120  2.004   0.968
+     FFD         emtec - meco_en (typ-high)   False    rel_T1 -2.113     NaN    NaN   0.636
+     FFD         emtec - meco_en (typ-high)   False rel_Tstar -0.218     NaN    NaN   0.552
+     FFD          emtec - meco_en (typ-mid)   False    rel_T1  1.293     NaN    NaN   0.936
+     FFD          emtec - meco_en (typ-mid)   False rel_Tstar  0.455     NaN    NaN   0.846
+     FFD          emtec - meco_en (typ-low)   False    rel_T1  1.845     NaN    NaN   0.068
+     FFD          emtec - meco_en (typ-low)   False rel_Tstar -0.148     NaN    NaN   0.638
+     FFD typicality effect: emtec - meco_en   False    rel_T1 -3.958     NaN    NaN   0.242
+     FFD typicality effect: emtec - meco_en   False rel_Tstar -0.070     NaN    NaN   0.922
+     FFD         emtec - onestop (typ-high)   False    rel_T1 -0.042  -0.773  0.710   0.884
+     FFD         emtec - onestop (typ-high)   False rel_Tstar -0.013  -0.419  0.489   0.974
+     FFD          emtec - onestop (typ-mid)   False    rel_T1 -0.451  -1.117 -0.104   0.022
+     FFD          emtec - onestop (typ-mid)   False rel_Tstar -0.423  -0.891 -0.027   0.044
+     FFD          emtec - onestop (typ-low)   False    rel_T1 -0.386  -0.719 -0.114   0.010
+     FFD          emtec - onestop (typ-low)   False rel_Tstar -0.276  -0.625 -0.024   0.034
+     FFD typicality effect: emtec - onestop   False    rel_T1  0.344  -0.486  1.215   0.274
+     FFD typicality effect: emtec - onestop   False rel_Tstar  0.263  -0.218  0.934   0.240
+     FFD           emtec - provo (typ-high)   False    rel_T1  0.001  -2.242  1.628   0.992
+     FFD           emtec - provo (typ-high)   False rel_Tstar -0.050  -1.483  0.923   0.894
+     FFD            emtec - provo (typ-mid)   False    rel_T1 -0.617  -2.103  1.193   0.184
+     FFD            emtec - provo (typ-mid)   False rel_Tstar -0.630  -1.349  0.667   0.160
+     FFD            emtec - provo (typ-low)   False    rel_T1 -0.251  -1.334  1.063   0.454
+     FFD            emtec - provo (typ-low)   False rel_Tstar -0.160  -1.046  1.155   0.644
+     FFD   typicality effect: emtec - provo   False    rel_T1  0.252  -3.145  2.356   0.712
+     FFD   typicality effect: emtec - provo   False rel_Tstar  0.109  -1.961  1.668   0.884
+      GD       emtec: high - low typicality    True    rel_T1  0.317  -0.027  0.740   0.062
+      GD       emtec: high - low typicality    True rel_Tstar  0.243   0.015  0.612   0.032
+      GD     meco_en: high - low typicality    True    rel_T1  0.523     NaN    NaN   0.398
+      GD     meco_en: high - low typicality    True rel_Tstar  0.147     NaN    NaN   0.824
+      GD     onestop: high - low typicality    True    rel_T1 -0.170  -0.372  0.012   0.070
+      GD     onestop: high - low typicality    True rel_Tstar -0.175  -0.349 -0.002   0.050
+      GD       provo: high - low typicality    True    rel_T1  0.036  -1.138  1.214   0.904
+      GD       provo: high - low typicality    True rel_Tstar  0.041  -0.682  0.842   0.896
+      GD         emtec - meco_en (typ-high)   False    rel_T1  0.116     NaN    NaN   0.588
+      GD         emtec - meco_en (typ-high)   False rel_Tstar -0.021     NaN    NaN   0.922
+      GD          emtec - meco_en (typ-mid)   False    rel_T1  0.052     NaN    NaN   0.670
+      GD          emtec - meco_en (typ-mid)   False rel_Tstar -0.107     NaN    NaN   0.238
+      GD          emtec - meco_en (typ-low)   False    rel_T1  0.321     NaN    NaN   0.604
+      GD          emtec - meco_en (typ-low)   False rel_Tstar -0.117     NaN    NaN   0.626
+      GD typicality effect: emtec - meco_en   False    rel_T1 -0.205     NaN    NaN   0.742
+      GD typicality effect: emtec - meco_en   False rel_Tstar  0.096     NaN    NaN   0.590
+      GD         emtec - onestop (typ-high)   False    rel_T1 -0.034  -0.363  0.306   0.832
+      GD         emtec - onestop (typ-high)   False rel_Tstar -0.002  -0.228  0.285   0.996
+      GD          emtec - onestop (typ-mid)   False    rel_T1 -0.390  -1.073 -0.055   0.032
+      GD          emtec - onestop (typ-mid)   False rel_Tstar -0.145  -0.619  0.085   0.176
+      GD          emtec - onestop (typ-low)   False    rel_T1 -0.521  -0.874 -0.314   0.000
+      GD          emtec - onestop (typ-low)   False rel_Tstar -0.421  -0.718 -0.253   0.000
+      GD typicality effect: emtec - onestop   False    rel_T1  0.488   0.110  0.956   0.016
+      GD typicality effect: emtec - onestop   False rel_Tstar  0.418   0.126  0.803   0.008
+      GD           emtec - provo (typ-high)   False    rel_T1  0.204  -0.546  1.269   0.546
+      GD           emtec - provo (typ-high)   False rel_Tstar  0.167  -0.500  0.849   0.518
+      GD            emtec - provo (typ-mid)   False    rel_T1 -0.441  -1.799  0.327   0.144
+      GD            emtec - provo (typ-mid)   False rel_Tstar -0.286  -1.165  0.218   0.178
+      GD            emtec - provo (typ-low)   False    rel_T1 -0.077  -0.577  0.769   0.696
+      GD            emtec - provo (typ-low)   False rel_Tstar -0.035  -0.421  0.386   0.816
+      GD   typicality effect: emtec - provo   False    rel_T1  0.281  -0.907  1.522   0.532
+      GD   typicality effect: emtec - provo   False rel_Tstar  0.202  -0.617  1.022   0.562
+     TFT       emtec: high - low typicality    True    rel_T1  0.285  -0.167  0.631   0.138
+     TFT       emtec: high - low typicality    True rel_Tstar  0.183  -0.160  0.523   0.242
+     TFT     meco_en: high - low typicality    True    rel_T1 -0.831     NaN    NaN   0.924
+     TFT     meco_en: high - low typicality    True rel_Tstar  0.208     NaN    NaN   0.660
+     TFT     onestop: high - low typicality    True    rel_T1 -0.016  -0.168  0.139   0.836
+     TFT     onestop: high - low typicality    True rel_Tstar -0.019  -0.167  0.131   0.820
+     TFT       provo: high - low typicality    True    rel_T1 -0.184  -0.600  0.199   0.304
+     TFT       provo: high - low typicality    True rel_Tstar -0.178  -0.558  0.207   0.280
+     TFT         emtec - meco_en (typ-high)   False    rel_T1  1.094     NaN    NaN   0.802
+     TFT         emtec - meco_en (typ-high)   False rel_Tstar -0.204     NaN    NaN   0.440
+     TFT          emtec - meco_en (typ-mid)   False    rel_T1  0.259     NaN    NaN   0.314
+     TFT          emtec - meco_en (typ-mid)   False rel_Tstar  0.110     NaN    NaN   0.440
+     TFT          emtec - meco_en (typ-low)   False    rel_T1 -0.021     NaN    NaN   0.788
+     TFT          emtec - meco_en (typ-low)   False rel_Tstar -0.179     NaN    NaN   0.624
+     TFT typicality effect: emtec - meco_en   False    rel_T1  1.116     NaN    NaN   0.808
+     TFT typicality effect: emtec - meco_en   False rel_Tstar -0.025     NaN    NaN   0.976
+     TFT         emtec - onestop (typ-high)   False    rel_T1 -0.049  -0.536  0.286   0.770
+     TFT         emtec - onestop (typ-high)   False rel_Tstar -0.072  -0.425  0.243   0.666
+     TFT          emtec - onestop (typ-mid)   False    rel_T1 -0.174  -0.514  0.113   0.228
+     TFT          emtec - onestop (typ-mid)   False rel_Tstar -0.102  -0.390  0.113   0.366
+     TFT          emtec - onestop (typ-low)   False    rel_T1 -0.349  -0.516 -0.229   0.000
+     TFT          emtec - onestop (typ-low)   False rel_Tstar -0.274  -0.435 -0.157   0.000
+     TFT typicality effect: emtec - onestop   False    rel_T1  0.300  -0.182  0.674   0.150
+     TFT typicality effect: emtec - onestop   False rel_Tstar  0.201  -0.168  0.559   0.228
+     TFT           emtec - provo (typ-high)   False    rel_T1  0.276  -0.329  0.793   0.260
+     TFT           emtec - provo (typ-high)   False rel_Tstar  0.278  -0.212  0.739   0.202
+     TFT            emtec - provo (typ-mid)   False    rel_T1 -0.078  -1.230  0.875   0.702
+     TFT            emtec - provo (typ-mid)   False rel_Tstar -0.043  -0.961  0.568   0.734
+     TFT            emtec - provo (typ-low)   False    rel_T1 -0.193  -0.418 -0.012   0.036
+     TFT            emtec - provo (typ-low)   False rel_Tstar -0.082  -0.306  0.062   0.270
+     TFT   typicality effect: emtec - provo   False    rel_T1  0.469  -0.145  1.047   0.092
+     TFT   typicality effect: emtec - provo   False rel_Tstar  0.361  -0.143  0.929   0.136
+reg_rate       emtec: high - low typicality    True    rel_T1  0.091  -4.688  6.890   0.874
+reg_rate       emtec: high - low typicality    True rel_Tstar  0.525  -0.218  1.056   0.164
+reg_rate     meco_en: high - low typicality    True    rel_T1  0.869     NaN    NaN   0.952
+reg_rate     meco_en: high - low typicality    True rel_Tstar -0.004     NaN    NaN   0.594
+reg_rate     onestop: high - low typicality    True    rel_T1 -0.697 -18.273 16.545   0.716
+reg_rate     onestop: high - low typicality    True rel_Tstar  0.058  -1.025  0.886   0.848
+reg_rate       provo: high - low typicality    True    rel_T1 -1.021  -6.647  6.831   0.586
+reg_rate       provo: high - low typicality    True rel_Tstar  0.090  -1.066  0.842   0.946
+reg_rate         emtec - meco_en (typ-high)   False    rel_T1 -1.686     NaN    NaN   0.558
+reg_rate         emtec - meco_en (typ-high)   False rel_Tstar  0.150     NaN    NaN   0.982
+reg_rate          emtec - meco_en (typ-mid)   False    rel_T1 -2.074     NaN    NaN   0.560
+reg_rate          emtec - meco_en (typ-mid)   False rel_Tstar -0.650     NaN    NaN   0.960
+reg_rate          emtec - meco_en (typ-low)   False    rel_T1 -0.909     NaN    NaN   0.474
+reg_rate          emtec - meco_en (typ-low)   False rel_Tstar -0.379     NaN    NaN   0.270
+reg_rate typicality effect: emtec - meco_en   False    rel_T1 -0.778     NaN    NaN   0.872
+reg_rate typicality effect: emtec - meco_en   False rel_Tstar  0.529     NaN    NaN   0.718
+reg_rate         emtec - onestop (typ-high)   False    rel_T1  0.008 -10.073 12.912   0.964
+reg_rate         emtec - onestop (typ-high)   False rel_Tstar  0.090  -0.933  1.122   0.936
+reg_rate          emtec - onestop (typ-mid)   False    rel_T1 -0.251 -17.068 14.028   0.822
+reg_rate          emtec - onestop (typ-mid)   False rel_Tstar -0.103  -1.137  1.380   0.964
+reg_rate          emtec - onestop (typ-low)   False    rel_T1 -0.779 -12.650 12.709   0.474
+reg_rate          emtec - onestop (typ-low)   False rel_Tstar -0.377  -0.863  0.069   0.108
+reg_rate typicality effect: emtec - onestop   False    rel_T1  0.787 -23.842 22.932   0.732
+reg_rate typicality effect: emtec - onestop   False rel_Tstar  0.467  -0.694  1.513   0.462
+reg_rate           emtec - provo (typ-high)   False    rel_T1  0.041  -6.561  8.070   0.972
+reg_rate           emtec - provo (typ-high)   False rel_Tstar  0.279  -0.459  1.295   0.294
+reg_rate            emtec - provo (typ-mid)   False    rel_T1  0.130 -16.261 13.888   0.860
+reg_rate            emtec - provo (typ-mid)   False rel_Tstar  0.850  -4.124  3.917   0.662
+reg_rate            emtec - provo (typ-low)   False    rel_T1 -1.071  -5.773  3.485   0.370
+reg_rate            emtec - provo (typ-low)   False rel_Tstar -0.157  -0.743  0.399   0.492
+reg_rate   typicality effect: emtec - provo   False    rel_T1  1.112  -8.626 15.358   0.682
+reg_rate   typicality effect: emtec - provo   False rel_Tstar  0.435  -0.627  1.654   0.242
+  reread       emtec: high - low typicality    True    rel_T1  0.351  -0.391  1.122   0.190
+  reread       emtec: high - low typicality    True rel_Tstar  0.295  -0.300  0.824   0.204
+  reread     meco_en: high - low typicality    True    rel_T1  2.067     NaN    NaN   0.736
+  reread     meco_en: high - low typicality    True rel_Tstar  0.833     NaN    NaN   0.922
+  reread     onestop: high - low typicality    True    rel_T1  0.033  -0.142  0.206   0.704
+  reread     onestop: high - low typicality    True rel_Tstar  0.030  -0.141  0.199   0.734
+  reread       provo: high - low typicality    True    rel_T1 -0.290  -1.104  0.237   0.156
+  reread       provo: high - low typicality    True rel_Tstar -0.249  -0.944  0.175   0.168
+  reread         emtec - meco_en (typ-high)   False    rel_T1 -1.413     NaN    NaN   0.638
+  reread         emtec - meco_en (typ-high)   False rel_Tstar -0.547     NaN    NaN   0.816
+  reread          emtec - meco_en (typ-mid)   False    rel_T1  0.226     NaN    NaN   0.436
+  reread          emtec - meco_en (typ-mid)   False rel_Tstar  0.180     NaN    NaN   0.466
+  reread          emtec - meco_en (typ-low)   False    rel_T1  0.302     NaN    NaN   0.496
+  reread          emtec - meco_en (typ-low)   False rel_Tstar -0.008     NaN    NaN   0.730
+  reread typicality effect: emtec - meco_en   False    rel_T1 -1.716     NaN    NaN   0.530
+  reread typicality effect: emtec - meco_en   False rel_Tstar -0.539     NaN    NaN   0.816
+  reread         emtec - onestop (typ-high)   False    rel_T1  0.081  -0.679  0.814   0.712
+  reread         emtec - onestop (typ-high)   False rel_Tstar  0.077  -0.531  0.603   0.732
+  reread          emtec - onestop (typ-mid)   False    rel_T1 -0.025  -0.330  0.302   0.884
+  reread          emtec - onestop (typ-mid)   False rel_Tstar -0.045  -0.269  0.205   0.746
+  reread          emtec - onestop (typ-low)   False    rel_T1 -0.237  -0.410 -0.105   0.004
+  reread          emtec - onestop (typ-low)   False rel_Tstar -0.188  -0.349 -0.053   0.004
+  reread typicality effect: emtec - onestop   False    rel_T1  0.318  -0.432  1.104   0.234
+  reread typicality effect: emtec - onestop   False rel_Tstar  0.264  -0.357  0.855   0.290
+  reread           emtec - provo (typ-high)   False    rel_T1  0.482  -0.622  1.797   0.152
+  reread           emtec - provo (typ-high)   False rel_Tstar  0.486  -0.264  1.259   0.102
+  reread            emtec - provo (typ-mid)   False    rel_T1 -0.000  -1.616  1.542   0.942
+  reread            emtec - provo (typ-mid)   False rel_Tstar -0.019  -1.589  0.690   0.978
+  reread            emtec - provo (typ-low)   False    rel_T1 -0.159  -0.412  0.033   0.092
+  reread            emtec - provo (typ-low)   False rel_Tstar -0.057  -0.283  0.119   0.526
+  reread   typicality effect: emtec - provo   False    rel_T1  0.642  -0.456  1.972   0.110
+  reread   typicality effect: emtec - provo   False rel_Tstar  0.543  -0.223  1.379   0.094
+
+wrote out/calibration/joint_split-typicality/

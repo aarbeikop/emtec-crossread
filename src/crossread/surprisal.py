@@ -35,12 +35,15 @@ class UnigramScorer:
 
 class LMScorer:
     def __init__(self, model_name: str, device: str = "cpu", max_ctx: int | None = None,
-                 bow_correction: bool = True, dtype: str = "float32"):
+                 bow_correction: bool = True, dtype: str = "float32", temps=(1.0,)):
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
         self.torch = torch
         self.name = model_name
+        # surprisal under p_T = softmax(logits / T); T = 1 is the plain model. Extra temperatures
+        # cost one log_softmax each per window, no extra forward passes.
+        self.temps = sorted(set([1.0] + [float(t) for t in temps]))
         self.tok = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name, dtype=getattr(torch, dtype)).to(device).eval()
@@ -67,11 +70,12 @@ class LMScorer:
         self.bow_correction = bow_correction and marks_bow
 
     def _positionwise(self, seq: list[int]):
-        """For every source position p: log p(seq[p+1]), log P(bow at p+1), entropy at p+1."""
+        """Per temperature T and source position p: log p_T(seq[p+1]), log P_T(bow at p+1);
+        entropy at p+1 for T = 1 only."""
         torch = self.torch
         n = len(seq)
-        lp_next = np.full(n, np.nan)
-        bow_lse = np.full(n, np.nan)
+        lp_next = {t: np.full(n, np.nan) for t in self.temps}
+        bow_lse = {t: np.full(n, np.nan) for t in self.temps}
         ent = np.full(n, np.nan)
         stride = max(1, self.max_ctx // 2)
         p0 = 0
@@ -80,13 +84,15 @@ class LMScorer:
             while p0 < n:
                 p1 = min(p0 + stride, n)
                 c0 = max(0, p1 - self.max_ctx)
-                logits = self.model(ids[c0:p1].unsqueeze(0)).logits[0].float()
-                logp = torch.log_softmax(logits, -1)[p0 - c0: p1 - c0]  # rows = sources p0..p1-1
-                bow_lse[p0:p1] = torch.logsumexp(logp[:, self.bow_mask], -1).cpu().numpy()
-                ent[p0:p1] = (-(logp.exp() * logp).sum(-1)).cpu().numpy()
+                logits = self.model(ids[c0:p1].unsqueeze(0)).logits[0].float()[p0 - c0: p1 - c0]
                 tgt = ids[p0 + 1: p1 + 1]
                 k = len(tgt)
-                lp_next[p0:p0 + k] = logp[:k].gather(1, tgt.unsqueeze(1)).squeeze(1).cpu().numpy()
+                for t in self.temps:
+                    logp = torch.log_softmax(logits / t, -1)  # rows = sources p0..p1-1
+                    bow_lse[t][p0:p1] = torch.logsumexp(logp[:, self.bow_mask], -1).cpu().numpy()
+                    if t == 1.0:
+                        ent[p0:p1] = (-(logp.exp() * logp).sum(-1)).cpu().numpy()
+                    lp_next[t][p0:p0 + k] = logp[:k].gather(1, tgt.unsqueeze(1)).squeeze(1).cpu().numpy()
                 p0 = p1
         return lp_next, bow_lse, ent
 
@@ -109,18 +115,24 @@ class LMScorer:
         word_of_tok = np.searchsorted(ends, [e for _, e in enc.offset_mapping], side="left")
         word_of_tok = np.minimum(word_of_tok, len(words) - 1)
 
-        out = []
+        cols = {"surprisal": [], "entropy": [], "n_tokens": []}
+        cols.update({f"surprisal_T{t:g}": [] for t in self.temps if t != 1.0})
         for w in range(len(words)):
             toks = np.where(word_of_tok == w)[0] + 1  # positions in seq
+            cols["n_tokens"].append(len(toks))
             if len(toks) == 0:
-                out.append((np.nan, np.nan, 0))
+                for c in cols:
+                    if c != "n_tokens":
+                        cols[c].append(np.nan)
                 continue
             first, last = toks.min(), toks.max()
-            logp = lp_next[toks - 1].sum()
-            if self.bow_correction:
-                logp += bow_lse[last] - bow_lse[first - 1]
-            out.append((-logp / LN2, ent[first - 1] / LN2, len(toks)))
-        return pd.DataFrame(out, columns=["surprisal", "entropy", "n_tokens"])
+            cols["entropy"].append(ent[first - 1] / LN2)
+            for t in self.temps:
+                logp = lp_next[t][toks - 1].sum()
+                if self.bow_correction:
+                    logp += bow_lse[t][last] - bow_lse[t][first - 1]
+                cols["surprisal" if t == 1.0 else f"surprisal_T{t:g}"].append(-logp / LN2)
+        return pd.DataFrame(cols)
 
 
 def score_texts(texts: pd.DataFrame, scorer, lm_label: str) -> pd.DataFrame:
