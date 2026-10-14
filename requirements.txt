@@ -1,0 +1,9 @@
+pandas>=2.2
+numpy
+pyarrow
+pyyaml
+wordfreq
+matplotlib
+torch
+transformers>=4.40
+rdata          # only for reading MECO .rda files

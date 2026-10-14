@@ -1,0 +1,81 @@
+# Map each corpus's raw columns onto the canonical schema (src/crossread/schema.py).
+# Canonical keys: subject_id, text (or the keys listed in text_keys), word_idx, word,
+#                 FFD, GD, TFT, [skip], [model], [decoding], [genre]
+# Lines marked VERIFY are guesses: run `python run.py columns <corpus>` to print
+# the real column names and fix them here.
+
+data_root: data            # paths below are relative to this folder
+
+corpora:
+
+  emtec:
+    path: emtec/reading_measures_corrected.csv
+    language: en
+    source: machine
+    zero_means_not_fixated: true          # EMTeC codes "not fixated" as 0 ms
+    text_keys: [text, model, decoding]    # one text = item x model x decoding strategy
+    columns:                               # VERIFY all
+      subject_id: subject_id
+      text: item_id
+      model: model
+      decoding: decoding_strategy
+      word_idx: word_id
+      word: word
+      FFD: FFD
+      GD: FPRT
+      TFT: TFT
+    join:                                  # genre comes from stimuli.csv
+      path: emtec/stimuli.csv
+      keys: {item_id: item_id, model: model, decoding_strategy: decoding_strategy}   # VERIFY
+      cols: {genre: task}
+
+  provo:
+    path: provo/Provo_Corpus-Eyetracking_Data.csv
+    language: en
+    source: human
+    genre: mixed
+    columns:                               # VERIFY (SR Data Viewer IA report names)
+      subject_id: Participant_ID
+      text: Text_ID
+      word_idx: Word_Number
+      word: Word
+      FFD: IA_FIRST_FIXATION_DURATION
+      GD: IA_FIRST_RUN_DWELL_TIME
+      TFT: IA_DWELL_TIME
+      skip: IA_SKIP
+
+  meco_en:
+    path: meco/joint_data_trimmed.rda      # .rda/.rds/.csv/.parquet all work
+    r_object: null                         # name of the data.frame inside the .rda, if several
+    language: en
+    source: human
+    genre: encyclopedic
+    filter: {lang: en}                     # VERIFY language column + code
+    columns:                               # VERIFY
+      subject_id: subid
+      text: trialid
+      word_idx: ianum
+      word: ia
+      FFD: firstfix.dur
+      GD: firstrun.dur
+      TFT: dur
+      skip: skip
+
+  # --- later: cross-lingual generalization (needs a multilingual LM, e.g. mGPT / Qwen) ---
+  # potec:   {path: ..., language: de, source: human, genre: textbook, columns: {...}}
+  # copco:   {path: ..., language: da, source: human, genre: speech-manuscript, columns: {...}}
+
+# which corpora to run (comment out ones you don't have yet)
+use: [emtec, provo, meco_en]
+
+lms:                     # HF model ids or local folders
+  - gpt2
+  - EleutherAI/pythia-160m
+device: cpu
+
+analysis:
+  measures: [FFD, GD, TFT, skip_rate]
+  min_readers: 3          # drop words read by fewer readers (EMTeC: ~7-8 per condition)
+  k_folds: 10
+  n_perm: 2000
+  n_boot: 1000
